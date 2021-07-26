@@ -1,0 +1,30 @@
+{
+  "name": "booksell",
+  "version": "1.0.0",
+  "description": "\"exercise fourteen\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvk10102000/BookSell.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "khangdv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dvk10102000/BookSell/issues"
+  },
+  "homepage": "https://github.com/dvk10102000/BookSell#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.13.3",
+    "nodemon": "^2.0.12"
+  }
+}
