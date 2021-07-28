@@ -7,13 +7,13 @@
                         <li class="header__navbar-item header__navbar-item--has-qr header__navbar-item--separate">
                             Vào cửa hàng trên ứng dụng BookStore
                             <div class="header__qr">
-                                <img src="./public/img/qaCode.png" alt="" class="header__qr-img">
+                                <img src="/img/qaCode.png" alt="" class="header__qr-img">
                                 <div class="header__qr-apps">
                                     <a href="" class="header__qr-link">
-                                        <img src="./public/img/googlePlay.png" alt="" class="header__qr-dowload-img">
+                                        <img src="/img/googlePlay.png" alt="" class="header__qr-dowload-img">
                                     </a>
                                     <a href="" class="header__qr-link">
-                                        <img src="./public/img/anh1.png" alt="" class="header__qr-dowload-img">
+                                        <img src="/img/anh1.png" alt="" class="header__qr-dowload-img">
                                     </a>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                                 <ul class="header__notify-list">
                                    <li class="header__notify-item header__notify-item-view">
                                     <a href="" class="header__notify-link">
-                                        <img src="./public/img/anh2.jpg" alt="" class="header__notify-img">
+                                        <img src="/img/anh2.jpg" alt="" class="header__notify-img">
                                         <div class="header__notify-info">
                                             <span class="header__notify-name">Mĩ phẩm chính hãng</span>
                                             <span class="header__notify-description">Mô tả mĩ phẩm chính hãng</span>
@@ -50,7 +50,7 @@
 
                                    <li class="header__notify-item">
                                     <a href="" class="header__notify-link">
-                                        <img src="./public/img/anh2.jpg" alt="" class="header__notify-img">
+                                        <img src="/img/anh2.jpg" alt="" class="header__notify-img">
                                         <div class="header__notify-info">
                                             <span class="header__notify-name">Mĩ phẩm chính hãng</span>
                                             <span class="header__notify-description">Mô tả mĩ phẩm chính hãng</span>
@@ -62,7 +62,7 @@
 
                                    <li class="header__notify-item">
                                     <a href="" class="header__notify-link">
-                                        <img src="./public/img/anh2.jpg" alt="" class="header__notify-img">
+                                        <img src="/img/anh2.jpg" alt="" class="header__notify-img">
                                         <div class="header__notify-info">
                                             <span class="header__notify-name">Mĩ phẩm chính hãng</span>
                                             <span class="header__notify-description">Mô tả mĩ phẩm chính hãng</span>
@@ -74,7 +74,7 @@
 
                                    <li class="header__notify-item">
                                     <a href="" class="header__notify-link">
-                                        <img src="./public/img/anh2.jpg" alt="" class="header__notify-img">
+                                        <img src="/img/anh2.jpg" alt="" class="header__notify-img">
                                         <div class="header__notify-info">
                                             <span class="header__notify-name">Mĩ phẩm chính hãng</span>
                                             <span class="header__notify-description">Mô tả mĩ phẩm chính hãng</span>
@@ -100,31 +100,52 @@
                                 Trợ Giúp
                             </a>
                         </li>
-                        <li  id="login" class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">Đăng Kí</li>
-                        <li class="header__navbar-item header__navbar-item--strong">Đăng Nhập</li>
-                        <!-- <li class="header__navbar-item header__navbar-user">
-                            <img src="./assets/img/khang.PNG" alt="" class="header__navbar-user-img">
-                            <span class="header__navbar-user-name">khang do van</span>
 
-                            <ul class="header__navbar-user-menu">
-                                <li class="header__navbar-user-item">
-                                    <a href="">Tài khoản của tôi</a>
-                                </li>
-                                <li class="header__navbar-user-item">
-                                    <a href="">Đơn mua</a>
-                                </li>
-                                <li class="header__navbar-user-item">
-                                    <a href="">Đăng xuất</a>
-                                </li>
-                            </ul>
+                        {{#if checkState}}
+                             <div class="title-logined">
+                                <li class="header__navbar-item header__navbar-user">
 
-                        </li> -->
+                                    {{#if imageAvatar}}
+                                        <img src="/img/{{imageAvatar}}" alt="" class="header__navbar-user-img">
+                                    {{else}}
+                                        <img src="/img/avartarEmpty.jpg" alt="" class="header__navbar-user-img">
+                                    {{/if}}
+                                    <span class="header__navbar-user-name">{{fullName}}</span>
+
+                                    <ul class="header__navbar-user-menu">
+                                        <li class="header__navbar-user-item">
+                                            <a href="/acount">Tài khoản của tôi</a>
+                                        </li>
+                                        <li class="header__navbar-user-item">
+                                            <a href="">Đơn mua</a>
+                                        </li>
+                                        <li class="header__navbar-user-item">
+                                            <a href="/acount/logOut">Đăng xuất</a>
+                                        </li>
+                                    </ul>
+
+                                </li> 
+                            </div>
+                        {{else}}
+                            <div class="title-login">
+                                <li id="btn-register" class="header__navbar-item header__navbar-item--strong header__navbar-item--separate"> Đăng kí</li>
+                                <li id="btn-login" class="header__navbar-item header__navbar-item--strong"> Đăng Nhập</li> 
+                            </div>
+                        {{/if}}
+
+
+
+                      
+
+                      
+                         
                     </ul>
                 </nav>
 
                 <div class="header-with-search">
                     <div class="header_logo">
-                        <img src="./public/img/logoTeam.jpg" alt="khangakhangasf" class="header_logo-img">
+                      
+                        <img src="/img/logoTeam.jpg" alt="khangakhangasf" class="header_logo-img">
                     </div>
 
                     <div class="header__search">
@@ -174,7 +195,7 @@
                             <!--no cart: header__cart-list--no-cart -->
                             <div class="header__cart-list ">
     
-                                <img src="./public/img/no_cart.png" alt="no-cart-empty" class="header__cart-no-cart-img">
+                                <img src="/img/no_cart.png" alt="no-cart-empty" class="header__cart-no-cart-img">
                                 <span class="header__cart-list-no-cart-msg">Chưa có sản phẩm</span>
                                 
                                 <!-- có sản phẩm -->
@@ -182,7 +203,7 @@
                                 <ul class="header__cart-list-item">
                                     <!-- cart item -->
                                     <li class="header__cart-item">
-                                        <img src="./public/img/javascriptBook.jpg" alt="" class="header__cart-img">
+                                        <img src="/img/javascriptBook.jpg" alt="" class="header__cart-img">
                                         <div class="header__cart-item-infor">
                                             <div class="header__cart-item-head">
                                                 <h5 class="header__cart-item-name">Javascript Book</h5>
@@ -202,7 +223,7 @@
                                     </li>
 
                                     <li class="header__cart-item">
-                                        <img src="./public/img/pythonBook.jpg" alt="" class="header__cart-img">
+                                        <img src="/img/pythonBook.jpg" alt="" class="header__cart-img">
                                         <div class="header__cart-item-infor">
                                             <div class="header__cart-item-head">
                                                 <h5 class="header__cart-item-name">Python Book</h5>
@@ -232,3 +253,19 @@
                 </div>
             </div>
         </header>
+
+        <script>
+            const register = document.getElementById('btn-register');
+            const login = document.getElementById('btn-login');
+            if(register != null && login != null) {
+
+                login.onclick = function (){
+                    location.href ='/acount/login';
+                }
+
+                register.onclick = function(res,req,next) {
+                location.href ='/acount/register';
+                }
+            }
+        </script>
+        

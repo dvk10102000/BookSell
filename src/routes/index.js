@@ -1,14 +1,15 @@
-const homeRouter = require('./home');
-const detailProduct = require('./detailProduct');
+const home = require('./home');
+const product = require('./product');
 const acount = require('./acount');
+
 
 function route(app){
 
-    // app.use('/detail',detailBook);
-    // app.use('/contact',contactRouter);
-    app.use('/',homeRouter);
-    app.use('/detailProduct',detailProduct);
+  
+    app.use('/book',product);
     app.use('/acount',acount);
+    app.use('/',home);
+   
     
 }
 

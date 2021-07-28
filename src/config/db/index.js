@@ -8,7 +8,7 @@ async function connect() {
             useFindAndModify: false,
             useCreateIndex: true
           });
-          console.log('connect successfully');
+          console.log('Connected successfully');
     }catch(err) {
             console.log('connect failure: ' + err);
     }

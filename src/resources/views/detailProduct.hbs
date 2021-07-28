@@ -2,7 +2,7 @@
  
     <div class="detail-product__container">
         <div class="detail-product__left">
-        <img src="./public/img/pythonBook.jpg" alt="tag-img" class="detail-product__left-img">
+        <img src="/img/{{this.image}}" alt="tag-img" class="detail-product__left-img">
         <div class="detail-product__left-icon">
             <span class="detail-product__left-share">Chia sẻ: 
                 <span class="detail-product__left-share-icon">
@@ -14,7 +14,7 @@
             </span>
             <span class="detail-product__left-like">
                 <i class="far fa-heart detail-product__left-like-heart"></i>
-                Đã Thích(151)
+                Đã Thích({{this.fauvorite}})
             </span>
 
         </div>
@@ -24,7 +24,7 @@
         <div class="detail-product__right">
             <h3 class="detail-product__right-name">
                 <span class="detail-product__right-favourite">Yêu Thích</span>
-                    Lập trình python cho người bắt đầu học
+                    {{this.name}}
             </h3>
 
             <div class="detail-product__right-estimate">
@@ -56,10 +56,10 @@
 
             <div class="detail-product__right-price">
                 <span class="detail-product__right-price-old">  
-                    1.350.000 Đ
+                    {{this.priceOld}} Đ
                 </span>
                 <span class="detail-product__right-price-new">  
-                    719.000 Đ
+                    {{this.priceCurrent}} Đ
                 </span>
                 <span class="detail-product__right-price-discount">  
                     47% GIẢM
@@ -120,7 +120,7 @@
                 <span class="detail-product__right-mount_btn">-</span>
                 <span class="detail_mount">1</span>
                 <span class="detail-product__right-mount_btn1">+</span>
-                <span class="detail-product__right-mount-avarable">296 sản phẩn có sẵn</span>  
+                <span class="detail-product__right-mount-avarable">{{this.quantity}} sản phẩn có sẵn</span>  
                 
             </div>
 
