@@ -145,23 +145,30 @@
                 <div class="header-with-search">
                     <div class="header_logo">
                       
-                        <img src="/img/logoTeam.jpg" alt="khangakhangasf" class="header_logo-img">
+                        <a href="/">
+                            <img src="/img/logoTeam.jpg" alt="khangakhangasf" class="header_logo-img">
+                        </a>
                     </div>
 
-                    <div class="header__search">
+                    <form  class="header__search" method="POST" action="/book/searchBook">
                         <div class="header__search-input-wrap">
-                            <input type="text" class="header__search-input" placeholder="Enter the keyword want to search">
+                            
+                            <input autocomplete="off" name="nameBook" type="text" class="header__search-input" placeholder="Enter the keyword want to search" onkeyup="searchFunction()" >
                             
                             <!-- history -->
+                            <span style="display: none;" class="list__name-use-search">{{names}}</span>
                             <div class="header__search-history">
                                 <h3 class="header__search-history-heading">Lịch sử tìm kiếm</h3>
                                 <ul class="header__search-history-list">
-                                    <li class="header__search-history-item">
-                                        <a href="">Sách lập trình</a>
+                                    {{!-- <li class="header__search-history-item">
+                                        <a href="">{{getListNameBook.name}}</a>
                                     </li>
+                                    {{#each getListNameBook}}
                                     <li class="header__search-history-item">
-                                        <a href="">Sách công nghệ</a>
+                                        <a href="">{{names}}</a>
                                     </li>
+                                    {{/each}} --}}
+
                                 </ul>
                             </div>
                         </div>
@@ -181,17 +188,18 @@
                             </ul>
 
                         </div>
-                        <button class="header__search-btn">
+                        <button type="submit" class="header__search-btn" >
                             <i class="header__search-btn-icon fas fa-search"></i>
                         </button>
-                    </div>
+                    </form>
                     <!-- layout cart -->
                     <div class="header__cart">
 
                         <div class="header__cart-wrap">
-
-                            <i class="header__cart-icon fas fa-shopping-cart"></i>
-                            <span class="header__cart-notice">2</span>
+                            <a href="/cart/detailCart">
+                                <i class="header__cart-icon fas fa-shopping-cart"></i>
+                                <span class="header__cart-notice">0</span>
+                            </a>
                             <!--no cart: header__cart-list--no-cart -->
                             <div class="header__cart-list ">
     
@@ -202,49 +210,56 @@
                                 <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
                                 <ul class="header__cart-list-item">
                                     <!-- cart item -->
-                                    <li class="header__cart-item">
-                                        <img src="/img/javascriptBook.jpg" alt="" class="header__cart-img">
-                                        <div class="header__cart-item-infor">
-                                            <div class="header__cart-item-head">
-                                                <h5 class="header__cart-item-name">Javascript Book</h5>
-                                                <div class="header__cart-item-price-wrap">
-                                                    <span class="header__cart-item-price">1000$</span>
-                                                    <span class="header__cart-item-multiply">x</span>
-                                                    <span class="header__cart-item-qnt">2</span>
+                                    {{#if checkState}}
+                                        {{#each user.cart.items}}
+                                            <li class="header__cart-item">
+                                                <img src="/img/{{this.imageBook}}" alt="image" class="header__cart-img">
+                                                <div class="header__cart-item-infor">
+                                                    <div class="header__cart-item-head">
+                                                        <h5 class="header__cart-item-name">{{this.nameBook}}</h5>
+                                                        <div class="header__cart-item-price-wrap">
+                                                            <span class="header__cart-item-price">{{{this.priceBook}}}$</span>
+                                                            <span class="header__cart-item-multiply">x</span>
+                                                            <span class="header__cart-item-qnt">{{this.qty}}</span>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="header__cart-item-body">
+                                                        <span class="header__cart-item-discription">{{this.discriptionBook}}</span>
+                                                        <a href="/cart/destroyItemCart/{{this.productId}}" class="header__cart-item-remove">Xóa</a>
+                                                    </div>
                                                 </div>
-                                                
-                                            </div>
-                                            <div class="header__cart-item-body">
-                                                <span class="header__cart-item-discription">Javascript tutorial</span>
-                                                <span class="header__cart-item-remove">Xóa</span>
-                                            </div>
-                                        </div>
 
-                                    </li>
-
-                                    <li class="header__cart-item">
-                                        <img src="/img/pythonBook.jpg" alt="" class="header__cart-img">
-                                        <div class="header__cart-item-infor">
-                                            <div class="header__cart-item-head">
-                                                <h5 class="header__cart-item-name">Python Book</h5>
-                                                <div class="header__cart-item-price-wrap">
-                                                    <span class="header__cart-item-price">2000$</span>
-                                                    <span class="header__cart-item-multiply">x</span>
-                                                    <span class="header__cart-item-qnt">1</span>
+                                            </li>
+                                        {{/each}}
+                                    {{else}}
+                                         {{#each cartNotLogin.cartContainer.items}}
+                                            <li class="header__cart-item">
+                                                <img src="/img/{{this.imageBook}}" alt="image" class="header__cart-img">
+                                                <div class="header__cart-item-infor">
+                                                    <div class="header__cart-item-head">
+                                                        <h5 class="header__cart-item-name">{{this.nameBook}}</h5>
+                                                        <div class="header__cart-item-price-wrap">
+                                                            <span class="header__cart-item-price">{{{this.priceBook}}}$</span>
+                                                            <span class="header__cart-item-multiply">x</span>
+                                                            <span class="header__cart-item-qnt">{{this.qty}}</span>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="header__cart-item-body">
+                                                        <span class="header__cart-item-discription">{{this.discriptionBook}}</span>
+                                                        <a href="/cart/destroyItemCart/{{this.productId}}" class="header__cart-item-remove">Xóa</a>
+                                                    </div>
                                                 </div>
-                                                
-                                            </div>
-                                            <div class="header__cart-item-body">
-                                                <span class="header__cart-item-discription">Python tutorial for beginer</span>
-                                                <span class="header__cart-item-remove">Xóa</span>
-                                            </div>
-                                        </div>
 
-                                    </li>
+                                            </li>
+                                        {{/each}}
+                                    {{/if}}
+                                   
 
 
                                 </ul>
-                                <a href="#" class="header__cart-view-cart btn btn--primary">Xem giỏ hàng</a>
+                                <a href="/cart/detailCart" class="header__cart-view-cart btn btn--primary">Xem giỏ hàng</a>
                             
                             </div>
                         </div>
@@ -253,10 +268,58 @@
                 </div>
             </div>
         </header>
-
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
+            
             const register = document.getElementById('btn-register');
             const login = document.getElementById('btn-login');
+            const cartQuantity = document.querySelectorAll('.header__cart-item');
+            const container_cart =$('.header__cart-list-item');
+            const count_cart = document.querySelector('.header__cart-notice');
+            const listName = document.querySelector('.list__name-use-search');
+            const container_search = document.querySelector('.header__search-history-list');
+            const input__search = document.querySelector('.header__search-input');
+            
+         
+
+            let arrListName = listName.textContent.split(',');
+            function searchFunction(){
+                let dem = 0; 
+                container_search.innerHTML = '';
+                
+                arrListName.map( (name) =>{
+                    if(name.includes(input__search.value) && input__search.value != ''){
+                        container_search.innerHTML += `
+                            <li class="header__search-history-item">
+                                <a onmouseover="mouseOver(${dem})" class='search_book_home' href="/book/searchBook/${name}">${name}</a>
+                            </li>
+                        `;
+                        dem++;
+                        
+                    }
+                })
+
+                if(input__search.value == '' || $('.header__search-history-item').length == 0){
+                    container_search.innerHTML += `
+                            <li class="header__search-history-item">
+                                <a href="">Không có kết quả tìm kiếm !!</a>
+                            </li>
+                        `;
+                } 
+                
+            }
+
+           
+            function mouseOver(index){
+                var searchNameIndex = document.querySelectorAll('.search_book_home');
+                input__search.value = searchNameIndex[index].textContent;
+             // console.log(searchNameIndex[index].textContent)
+            }
+
+            count_cart.innerHTML = cartQuantity.length;
+            
+
             if(register != null && login != null) {
 
                 login.onclick = function (){
@@ -267,5 +330,8 @@
                 location.href ='/acount/register';
                 }
             }
+
+
+
         </script>
         

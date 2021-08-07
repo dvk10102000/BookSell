@@ -669,6 +669,8 @@
 
 /* search history */
 .header__search-history{
+    height:300px;
+    overflow-y: auto;
     position: absolute;
     top: 105%;
     left: 0;
@@ -802,6 +804,8 @@
 
 .header__cart-item-remove{
     font-size: 1.4rem;
+    text-decoration: none;
+    color: var(--text-color);
 
 }
 .header__cart-item-remove:hover{

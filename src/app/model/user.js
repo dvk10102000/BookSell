@@ -11,6 +11,33 @@ const user = new Schema({
     gender: String,
     birth: String,
     avartar: String,
+    discription: String,
+    historySearch:{
+        detailHistory : String,
+    },
+    cart:{
+        items:[{
+            productId: {
+                type: mongoose.Types.ObjectId,
+                required: true
+            },
+            imageBook: {type: String},
+            nameBook: {type: String},
+            priceBook: {
+                type: Number,
+                default: 0, 
+            },
+            discriptionBook: {type: String},
+            qty: {
+                type: Number,
+                required: true,
+            }
+        }],
+        price: {
+            type: Number,
+            default:0,
+        }
+    }
 })
 
 module.exports = mongoose.model('User',user,'User');

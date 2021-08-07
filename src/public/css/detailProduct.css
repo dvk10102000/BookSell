@@ -269,15 +269,16 @@
     margin-left: 20px;
 }
 .detail-product__right-btn{
-
+    margin-top: 40px;
 }
 .detail-product__right-cart-btn.btn.btn--primary{
-    padding: 10px;
+    /* padding: 10px; */
     background-color: #ffeee8;
     color: var(--primary-color);
     margin-right: 40px;
 }
 .detail-product__right-buy-btn{
+    margin-top: 9px;
     padding: 10px 20px;
 }
 .detail-product__right-cart-btn-icon{

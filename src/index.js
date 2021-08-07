@@ -7,9 +7,13 @@ const app = express();
 const methodOverride = require('method-override');
 const session = require('express-session');
 const MongoDBStore = require("connect-mongodb-session")(session);
-
+const cookieParser = require('cookie-parser');
+const shortid = require('shortid');
 const isAuth = require('./app/middleware/is-auth');
- 
+const listBook = require('./app/middleware/listNameBook');
+const sessionID = require('./app/middleware/sessionMiddleware');
+const renderCart = require('./app/middleware/renderCart');
+
 
 const port = 3000;
 
@@ -18,12 +22,20 @@ app.use(express.urlencoded({
 }));
 
 app.use(express.json());
-
 app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname,'app')));
+
+db.connect();
+
+
 
 
 app.engine('hbs', handlebars({
-  extname: '.hbs'
+  extname: '.hbs', 
+  helper: {
+    with : (context, options) => options.fn(context),
+  }
+  
 }));
 
 app.use(methodOverride('_method'));
@@ -40,9 +52,13 @@ app.use(
     saveUninitialized: false,
     store: store,
   })
-);
+  );
+app.use(cookieParser('MY SECRET'));
+app.use(sessionID);
 
 app.use(isAuth);
+app.use(listBook);
+app.use(renderCart);
 
 app.set('view engine', 'hbs');
 
@@ -52,9 +68,7 @@ app.set('views',path.join(__dirname,'resources/views'));
 
 
   
-db.connect();
 route(app);
-
 
 
 app.listen(port, () => {
@@ -64,4 +78,3 @@ app.listen(port, () => {
 
 
 
-//search app.use defferent with app.get

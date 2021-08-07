@@ -23,6 +23,9 @@
                         Tài khoản của tôi
                     </li>
                     <li class="acount__container-left-bottom-address">Địa chỉ</li>
+                    <li class="acount__container-left-bottom-address">
+                        <a href="/cart/purchaseOrder" style="text-decoration: none;color: black;">Đơn mua</a>
+                    </li>
                     <li class="acount__container-left-bottom-password">Đổi mật khẩu</li>
                 </ul>
             </div>
@@ -73,7 +76,7 @@
                         <input class="acount__choose" type="radio"  name="gender" value="other">
                         <label for="javascript">khác</label>
                     </div>
-                    <span class="class__temp-getId" >{{this.gender}}</span>
+                    <span class="class__temp-getId" style="visibility:hidden" >{{this.gender}}</span>
                     {{!-- style="visibility:hidden" --}}
                     <div class="acount__container-right-body-left-born">
                         <span class="acount__container-right-body-left-born-label">Ngày Sinh</span>
