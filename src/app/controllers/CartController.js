@@ -30,7 +30,7 @@ class cartController{
         
         users.updateOne({_id : user._id}, user)
         .then(() =>{
-          res.redirect('/');
+          res.redirect('back');
         })     
         
       }
@@ -53,7 +53,7 @@ class cartController{
         }
       CartNotLogin.updateOne({id : req.signedCookies.sessionId} , Cart)
                   .then( () => {
-                    res.redirect('/');
+                    res.redirect('back');
                   })
 
       
@@ -80,7 +80,7 @@ class cartController{
   
         users.updateOne({_id : user._id}, user)
                .then(() =>{
-                 res.redirect('/');
+                 res.redirect('back');
                }) 
       }
       else{
@@ -100,7 +100,7 @@ class cartController{
   
         CartNotLogin.updateOne({id : req.signedCookies.sessionId}, Cart)
                .then(() =>{
-                 res.redirect('/');
+                 res.redirect('back');
                }) 
       }
 
@@ -236,6 +236,7 @@ class cartController{
             name :user.name,
             address : req.address,
             phoneNumber : req.phoneNumber,
+            status:0,
 
           });
 
@@ -277,6 +278,7 @@ class cartController{
             name : req.body.name,
             address : req.body.address,
             phoneNumber : req.body.phoneNumber,
+            status:0,
 
           });
           
@@ -297,7 +299,7 @@ class cartController{
 
         for(let i = 0; i < saveIndex.length; i++) {
 
-          bill.cart.price += saveIndex[i].priceBook * saveIndex[i].qty;
+          bill.cart.price += saveIndex[i].priceBook * saveIndex[i].qty+30;
         }
 
         
