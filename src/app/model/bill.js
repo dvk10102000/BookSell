@@ -5,6 +5,7 @@ const bill = new Schema({
     name: String,
     address: String,
     phoneNumber: String,
+    status: Boolean, 
     cart:{
         items:[{
             productId: {
@@ -28,6 +29,6 @@ const bill = new Schema({
             default:0,
         }
     }
-})
+}, { timestamps: { createdAt: 'created_at' } });
 
 module.exports = mongoose.model('Bill',bill,'Bill');
