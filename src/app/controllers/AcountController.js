@@ -79,7 +79,14 @@ class DetailProductController{
         req.session.imageAvatar = user.avartar;
         
         req.session.Authorization = user.permission;
-        res.redirect("/");
+        // if(req.session.Authorization === 'admin'){
+        //     console.log('khang handsome');
+        //     res.redirect('/admin')
+        // }else{
+        //     console.log('khang pretty');
+
+            res.redirect("/");
+        // }
     }
 
     logOut(req, res,next){
@@ -89,17 +96,35 @@ class DetailProductController{
           });
     }
 
-    update(req, res,next){
-        
-        User.updateOne({_id: req.params.id}, req.body)
-            .then(() =>{
-                req.session.imageAvatar = req.body.avartar;
-                // console.log(req.session.imageAvatar);
+   async update(req, res,next){
+       
+       let user = await User.findOne({email : req.session.email});
+        // console.log(req.body.avartar);
+        if(req.body.avartar == ''){
+            user.avartar = req.session.imageAvatar;
+        }
+        else{
+            user.avartar = req.body.avartar;
+            req.session.imageAvatar = req.body.avartar;
+        }
+
+        user.name = req.body.name;
+        user.gender = req.body.gender;
+        user.birth = req.body.birth;
+        user.address = req.body.address;
+        user.phoneNumber = req.body.phoneNumber;
+        User.updateOne({email : req.session.email}, user)
+            .then( ()=> {
+                // console.log(user);
                 res.redirect("back");
             })
-            .catch(next);
+       
     }
 
 }
 
 module.exports =  new DetailProductController;
+
+
+
+
