@@ -32,8 +32,14 @@ db.connect();
 
 app.engine('hbs', handlebars({
   extname: '.hbs', 
-  helper: {
-    with : (context, options) => options.fn(context),
+  helpers: {
+    sum: (a, b) => a + b,
+    checkStatusOrder: a =>{
+      if(a == 1)
+          return true;
+      else
+          return false;
+    }
   }
   
 }));
