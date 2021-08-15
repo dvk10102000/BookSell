@@ -669,7 +669,7 @@
 
 /* search history */
 .header__search-history{
-    height:300px;
+    max-height:300px;
     overflow-y: auto;
     position: absolute;
     top: 105%;
