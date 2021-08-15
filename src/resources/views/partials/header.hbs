@@ -292,7 +292,7 @@
                     if(name.includes(input__search.value) && input__search.value != ''){
                         container_search.innerHTML += `
                             <li class="header__search-history-item">
-                                <a onmouseover="mouseOver(${dem})" class='search_book_home' href="/book/searchBook/${name}">${name}</a>
+                                <a onmouseover="mouseOver(${dem})" class='search_book_home' href="/book/searchBook">${name}</a>
                             </li>
                         `;
                         dem++;
@@ -314,7 +314,7 @@
             function mouseOver(index){
                 var searchNameIndex = document.querySelectorAll('.search_book_home');
                 input__search.value = searchNameIndex[index].textContent;
-             // console.log(searchNameIndex[index].textContent)
+             
             }
 
             count_cart.innerHTML = cartQuantity.length;
