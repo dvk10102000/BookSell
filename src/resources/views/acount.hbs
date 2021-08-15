@@ -18,15 +18,19 @@
             </div>
             <div class="acount__container-left-bottom">
                 <ul class="acount__container-left-bottom-infor">
-                    <li class="acount__container-left-bottom-acount">
+                    <li class="acount__container-left-bottom-acount acount-information">
                         <i class="fas fa-user-circle acount__container-left-bottom-acount-icon"></i>
                         Tài khoản của tôi
                     </li>
-                    <li class="acount__container-left-bottom-address">Địa chỉ</li>
-                    <li class="acount__container-left-bottom-address">
-                        <a href="/cart/purchaseOrder" style="text-decoration: none;color: black;">Đơn mua</a>
+                    <li class="acount__container-left-bottom-address acount-information ">
+                        Địa chỉ
                     </li>
-                    <li class="acount__container-left-bottom-password">Đổi mật khẩu</li>
+                    <li class="acount__container-left-bottom-address acount-information" >
+                        <a href="/cart/purchaseOrder" id="myOrder" class="">Đơn mua</a>
+                    </li>
+                    <li class="acount__container-left-bottom-password acount-information ">
+                        Đổi mật khẩu
+                    </li>
                 </ul>
             </div>
         
@@ -34,6 +38,7 @@
 
 
         <div class="acount__container-right">
+          <div class="acount_information_detail">
             <div class="acount__container-right-main">
                 <h2 class="acount__container-right-main-title">Hồ Sơ Của Tôi</h2>
                 <h2 class="acount__container-right-main-subtitle">Quản lý thông tin hồ sơ để bảo mật tài khoản</h2>
@@ -61,7 +66,7 @@
                     <div class="acount__container-right-body-left-phone">
                         <span class="acount__container-right-body-left-phone-label">Số Điện Thoại</span>
                         <span class="acount__container-right-body-left-phone-content">{{this.phoneNumber}}
-                            <a href="">Thay đổi</a>
+                            <a id="change_phoneNumber">Thay đổi</a>
 
                         </span>
                     </div>
@@ -104,7 +109,40 @@
                 </div>
 
             </div>
+          </div>
+         
+          <div class="acount_information_address_change">
+            <div class="acount__container-right-main">
+                <h2 class="acount__container-right-main-addresstitle">Địa chỉ Của Tôi</h2>
+              
+            </div>
 
+             <div class="acount__address-phone-change">
+              
+                    <div class="acount__address-phone-change-nameAcount">
+                        <span class="acount__address-phone-change-nameAcount-label">Email Đang Nhập</span>
+                        <span class="acount__address-phone-change-nameAcount-content">{{this.email}}</span>
+                    </div>
+
+                    <div class="acount__address-phone-change-nameAddress">
+                        <span class="acount__address-phone-change-name-label">Địa chỉ</span>
+                        <input type="text"  value="{{this.address}}" name="address" class="acount__address-phone-change-name-content">
+                    </div>
+
+                    <div class="acount__address-phone-change-phone">
+                        <span class="acount__address-phone-change-phone-label">Số Điện Thoại</span>
+                         <input type="text"  value="{{this.phoneNumber}}" name="phoneNumber" class="acount__address-phone-change-phone-content">
+                        
+                        </span>
+                    </div>
+            </div>
+             <div class="acount__address-phone-change-btn">
+                    <button  type="submit" class="acount__address-phone-change-btn-label btn btn--primary">Lưu</button>
+            </div>
+
+
+
+          </div>
         </div>
    </div>
 
@@ -113,6 +151,28 @@
 <script>
     const checkGender = document.querySelectorAll('.acount__choose');
     let container__getID = document.querySelector('.class__temp-getId');
+    const interfaceInformatinDetail = document.querySelector('.acount_information_detail');
+    const interfaceAddress = document.querySelector('.acount_information_address_change')
+    const myAddress = document.querySelector('.acount__container-left-bottom-address');
+    const myAcount = document.querySelector('.acount__container-left-bottom-acount');
+    const changePhoneNumber = document.querySelector('#change_phoneNumber');
+    
+
+    
+
+    changePhoneNumber.addEventListener('click',functionChangePhoneNumber);
+    myAddress.addEventListener('click',functionChangePhoneNumber);
+    myAcount.addEventListener('click',function(e) {
+        interfaceInformatinDetail.style.display = 'block';
+        interfaceAddress.style.display = 'none';
+    })
+
+    function functionChangePhoneNumber(e) {
+        interfaceInformatinDetail.style.display = 'none';
+        interfaceAddress.style.display = 'block';
+    }
+
+
     let genderID = container__getID.textContent;
     for(let i = 0; i < checkGender.length; i++) {
         if(checkGender[i].value === genderID) {
