@@ -287,3 +287,86 @@ tbody, td, tfoot, th, thead, tr {
     background-color: green;
     color: #fff;
 }
+
+/* total items css */
+.manager__items{
+    margin-top:20px ;
+}
+.manager__items-image{
+    width: 120px;
+    display: inline-block;
+}
+.manager__items-img-detail{
+    width: 50%;
+    /* margin-left: auto;
+    margin-right: auto;
+    display: block; */
+    box-shadow: 0 0 0 1px rgba(0, 0, 0,0.1);
+
+}
+#manager__items-delete{
+    padding-right: 20px;
+    display: inline-block;
+}
+.modal-title{
+    font-size: 1.8rem;
+}
+.modal-body p{
+    font-size: 1.5rem;
+}
+#form__update-item{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 50px;
+    margin-bottom: 20px;
+
+    /* background-color: #ccc; */
+
+}
+.form__update-item-label{
+    font-size: 1.8rem;
+    padding-left: 30px;
+    margin-bottom: 4px;
+}
+.form__update-item-name{
+    margin-left: 30px;
+    width: 80%;
+    height: 30px;
+    font-size: 1.6rem;
+    
+     
+}
+
+.form__update-item-img{
+    margin-left: 30px;
+    width: 80%;
+    height: 30px;
+    font-size: 1.6rem;
+     
+}
+
+.form__update-item-price{
+    margin-left: 30px;
+    width: 80%;
+    height: 30px;
+    font-size: 1.6rem;
+     
+}
+
+.form__update-item-qty{
+    margin-left: 30px;
+    width: 80%;
+    height: 30px;
+    font-size: 1.6rem;
+     
+}
+#update-title{
+    display:block;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 2.4rem;
+}
+.form__update-item-btn{
+    margin:100px 0 100px 32px;
+    font-size:1.8rem;
+}
