@@ -128,6 +128,7 @@ class HomeController {
             if (err instanceof multer.MulterError) {
               console.log("A Multer error occurred when uploading."); 
             } else if (err) {
+              console.log();
               console.log("An unknown error occurred when uploading." + err);
             }else{
                 let book = new Books({
