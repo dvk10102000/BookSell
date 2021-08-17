@@ -4,6 +4,8 @@ const route = express.Router();
 const AdminController = require('../app/controllers/AdminController');
 
 
+route.get('/AddItems',AdminController.AddItems);
+route.post('/add',AdminController.add);
 route.get('/managerItems',AdminController.managerItems);
 route.post('/update/:id',AdminController.updateItem);
 route.get('/update/:id',AdminController.update);

@@ -7,6 +7,7 @@ const CartNotLogin = require('../model/cart');
 const { mutipleMongooseToObject } = require('../../util/mongoose');
 const { mongooseToObject } = require('../../util/mongoose');
 const multer  = require('multer');
+
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'src/public/img');
@@ -15,6 +16,7 @@ let storage = multer.diskStorage({
       cb(null, Date.now()  + "-" + file.originalname);
     }
 });  
+
 let upload = multer({ 
     storage: storage,
     fileFilter: function (req, file, cb) {
@@ -95,6 +97,55 @@ class HomeController {
                      
                         
                 
+    }
+    async AddItems(req, res, next) {
+        // await upload(req, res, function (err) {
+        //     if (err instanceof multer.MulterError) {
+        //       console.log("A Multer error occurred when uploading."); 
+        //     } else if (err) {
+        //       console.log("An unknown error occurred when uploading." + err);
+        //     }else{
+        //         let book = new Book({
+        //             name : req.body.name,
+        //             description : req.body.description,
+        //             nameAuthor : req.body.nameAuthor,
+        //             publicLocation : req.body.publicLocation,
+        //             image : req.file.filename,
+        //             priceOld : req.body.priceOld,
+        //             priceCurrent : req.body.priceCurrent,
+        //             quantity : req.body.quantity,
+        //         });
+        //         book.save() 
+        //             .then( () => {
+        //                 res.redirect('/admin/managerItems');
+        //             })
+        //     }
+        // })  
+        res.render('addItems');
+    }
+    async add(req, res, next){
+       await upload(req, res, function (err) {
+            if (err instanceof multer.MulterError) {
+              console.log("A Multer error occurred when uploading."); 
+            } else if (err) {
+              console.log("An unknown error occurred when uploading." + err);
+            }else{
+                let book = new Books({
+                    name : req.body.name,
+                    description : req.body.description,
+                    nameAuthor : req.body.nameAuthor,
+                    publicLocation : req.body.publicLocation,
+                    image : req.file.filename,
+                    priceOld : req.body.priceOld,
+                    priceCurrent : req.body.priceCurrent,
+                    quantity : req.body.quantity,
+                });
+                book.save() 
+                    .then( () => {
+                        res.redirect('/admin/managerItems');
+                    })
+            }
+        })  
     }
 }   
         
