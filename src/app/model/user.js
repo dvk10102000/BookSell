@@ -11,7 +11,7 @@ const user = new Schema({
     gender: String,
     birth: String,
     avartar: String,
-    discription: String,
+    status: String,
     historySearch:{
         detailHistory : String,
     },

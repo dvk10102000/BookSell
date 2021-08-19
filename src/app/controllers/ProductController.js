@@ -15,19 +15,26 @@ class ProductController{
              .catch(next);
         
     }
-    async searchBook(req, res,next){
-        
-       books.find({name : req.body.nameBook})
-                    .then( book => {
-                        res.render('search',{
-                            book : mutipleMongooseToObject(book),
-                        })
-                    })
+    // async searchBook(req, res,next){
+    //     let Name;
+    //    if(req.body.nameBook == '' || req.body.nameBook == null || req.body.nameBook == 'undified'){
+    //        console.log(123);
+    //        Name = req.session.nameBookLocal;
+    //    } else{
+    //        req.session.nameBookLocal = req.body.nameBook;
+    //        Name = req.body.nameBook;
+    //    }
+    //    books.find({name : Name})
+    //                 .then( book => {
+    //                     res.render('search',{
+    //                         book : mutipleMongooseToObject(book),
+    //                     })
+    //                 })
        
                   
         
         
-    }
+    // }
 }
 
 module.exports =  new ProductController;

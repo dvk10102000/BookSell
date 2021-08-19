@@ -42,11 +42,31 @@ class HomeController {
     }  
     async confirmOrder(req, res,next){
        let bill = await bills.findOne({_id : req.params.id});
-       bill.status = true;
-       bills.updateOne({_id : req.params.id},bill)
-            .then(bill =>{
-                res.redirect('/');
-            })
+       let book = await Books.find({});
+       let listIdITemChoose = [];
+       bill.cart.items.map(item =>{
+           for(let i = 0; i < book.length; i++) {
+                if(item.productId.toString() == book[i]._id.toString()) {
+
+                    book[i].quantitySold += parseInt(item.qty);
+                    book[i].quantity -= parseInt(item.qty);
+                    
+                    
+                    Books.updateOne({_id : book[i].id},{
+                        quantitySold : book[i].quantitySold,
+                        quantity : book[i].quantity,
+                    }).then()
+                    
+                }
+           }
+        
+    } )
+   
+    bill.status = true;
+    bills.updateOne({_id : req.params.id},bill)
+        .then(bill =>{
+            res.redirect('/');
+        })
     }  
     managerItems(req, res, next){
        Books.find({})
@@ -146,6 +166,14 @@ class HomeController {
                     })
             }
         })  
+    }
+
+
+    managerUser(req, res, next) {
+        users.find({})
+             .then(user => {
+                 res.render('managerUser',{user : mutipleMongooseToObject(user)});
+             })
     }
 }   
         

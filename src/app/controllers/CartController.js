@@ -234,8 +234,8 @@ class cartController{
           let user =  await users.findOne({email : req.session.email});
           let bill = await  new Bill({
             name :user.name,
-            address : req.address,
-            phoneNumber : req.phoneNumber,
+            address : user.address,
+            phoneNumber : user.phoneNumber,
             status:0,
 
           });
@@ -288,40 +288,40 @@ class cartController{
           let saveIndex = [];
           let saveIndexProductIdMatch = [];
           cartUpdate.items.map((item,index) => {
-          let isChecked =  productIdArr.includes(item.productId.toString());
-          if(isChecked){
-            saveIndex.push(item);
-            saveIndexProductIdMatch.push(index);
+            let isChecked =  productIdArr.includes(item.productId.toString());
+            if(isChecked){
+              saveIndex.push(item);
+              saveIndexProductIdMatch.push(index);
+            }
+          })
+        
+          bill.cart.items = saveIndex;
+
+          for(let i = 0; i < saveIndex.length; i++) {
+
+            bill.cart.price += saveIndex[i].priceBook * saveIndex[i].qty+30;
           }
-        })
-        
-        bill.cart.items = saveIndex;
 
-        for(let i = 0; i < saveIndex.length; i++) {
-
-          bill.cart.price += saveIndex[i].priceBook * saveIndex[i].qty+30;
-        }
-
-        
-        bill.save();
-       
-
-        for(let i = 0; i < saveIndexProductIdMatch.length; i++) {   
           
-          cartUpdate.price -=  cartUpdate.items[saveIndexProductIdMatch[i]].priceBook * cartUpdate.items[saveIndexProductIdMatch[i]].qty;               
-        }
+          bill.save();
         
-        for(let i = saveIndexProductIdMatch.length - 1 ; i >= 0 ; i--) {    
-          cartUpdate.items.splice(saveIndexProductIdMatch[i], 1);    
-        }
-       
-       Cart.cartContainer = cartUpdate;
+
+          for(let i = 0; i < saveIndexProductIdMatch.length; i++) {   
+            
+            cartUpdate.price -=  cartUpdate.items[saveIndexProductIdMatch[i]].priceBook * cartUpdate.items[saveIndexProductIdMatch[i]].qty;               
+          }
+          
+          for(let i = saveIndexProductIdMatch.length - 1 ; i >= 0 ; i--) {    
+            cartUpdate.items.splice(saveIndexProductIdMatch[i], 1);    
+          }
         
-       CartNotLogin.updateOne({id : req.signedCookies.sessionId} , Cart)
-                   .then(function(){
-                      res.redirect('/');
-                    })
-      }
+          Cart.cartContainer = cartUpdate;
+            
+          CartNotLogin.updateOne({id : req.signedCookies.sessionId} , Cart)
+                      .then(function(){
+                          res.redirect('/');
+                        })
+          }
       
      }
   }

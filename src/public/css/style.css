@@ -290,7 +290,11 @@ tbody, td, tfoot, th, thead, tr {
 
 /* total items css */
 .manager__items{
+    /* margin-top:20px ; */
+}
+.manager__product{
     margin-top:20px ;
+
 }
 .manager__items-image{
     width: 120px;

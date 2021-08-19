@@ -79,6 +79,9 @@ class DetailProductController{
         req.session.imageAvatar = user.avartar;
         
         req.session.Authorization = user.permission;
+        user.status = 'active';
+        User.updateOne({email},user)
+            .then();
         // if(req.session.Authorization === 'admin'){
         //     console.log('khang handsome');
         //     res.redirect('/admin')
@@ -89,7 +92,11 @@ class DetailProductController{
         // }
     }
 
-    logOut(req, res,next){
+    async logOut(req, res,next){
+        const user = await User.findOne({ email : req.session.email });
+        user.status = 'noActive';
+        User.updateOne({ email : req.session.email},user)
+            .then();
         req.session.destroy((err) => {
             if (err) throw err;
             res.redirect("/acount/login");

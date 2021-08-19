@@ -41,7 +41,82 @@ class HomeController {
                 })
             })
         
-    }    
+    } 
+    async searchBook(req, res,next){
+        let perPage = 10;
+        let page = req.query.page    || 1;
+        let Name;
+        if(req.body.nameBook == '' || req.body.nameBook == null || req.body.nameBook == 'undified'){
+            console.log(123);
+            Name = req.session.nameBookLocal;
+        } else{
+            req.session.nameBookLocal = req.body.nameBook;
+            Name = req.body.nameBook;
+        }
+
+
+          Books.find({name: Name})
+             .skip((perPage * page) - perPage)
+             .limit(perPage)
+             .exec(function(err, books) {
+                Books.count().exec(function(err, count) {
+                    
+                    if (err) return next(err);
+                    if(req.session.Authorization != 'admin'){
+                        res.render('home', {
+                            book: mutipleMongooseToObject(books),
+                            current: page,
+                            pages: Math.ceil(count / perPage)
+                        })
+                    }
+                    else{
+                        bills.find({})
+                             .then(bill => {
+                                 res.render('admin', {
+                                     bill: mutipleMongooseToObject(bill)
+                                 })
+                             })
+                        
+                    }
+                })
+            })
+       
+                  
+        
+        
+    }   
+    sortPopular(req, res, next){
+        let perPage = 10;
+        let page = req.query.page    || 1;
+
+        Books.find({})
+             .skip((perPage * page) - perPage)
+             .limit(perPage)
+             .sort([['quantitySold', 'descending']])
+             .exec(function(err, books) {
+                Books.count().exec(function(err, count) {
+                    
+                    if (err) return next(err);
+                    if(req.session.Authorization != 'admin'){
+                        res.render('home', {
+                            book: mutipleMongooseToObject(books),
+                            current: page,
+                            pages: Math.ceil(count / perPage)
+                        })
+                    }
+                    else{
+                        bills.find({})
+                             .then(bill => {
+                                 res.render('admin', {
+                                     bill: mutipleMongooseToObject(bill)
+                                 })
+                             })
+                        
+                    }
+                })
+            })
+        Books.find({}).sort
+    }
 }   
         
 module.exports = new HomeController;

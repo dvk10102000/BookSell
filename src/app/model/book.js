@@ -10,6 +10,7 @@ const Books = new Schema({
     priceCurrent: Number,
     quantityPage : Number,
     quantity:Number,
+    quantitySold: Number,
     publicLocation: String,
     image: String,
     slug :String,
