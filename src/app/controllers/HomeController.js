@@ -15,6 +15,7 @@ class HomeController {
         let perPage = 10;
         let page = req.query.page    || 1;
 
+        
         Books.find({})
              .skip((perPage * page) - perPage)
              .limit(perPage)
@@ -115,7 +116,100 @@ class HomeController {
                     }
                 })
             })
-        Books.find({}).sort
+        // Books.find({}).sort
+    }
+    sortPriceDes(req, res, next){
+        let perPage = 10;
+        let page = req.query.page    || 1;
+
+        Books.find({})
+             .skip((perPage * page) - perPage)
+             .limit(perPage)
+             .sort([['priceCurrent', 'descending']])
+             .exec(function(err, books) {
+                Books.count().exec(function(err, count) {
+                    
+                    if (err) return next(err);
+                    if(req.session.Authorization != 'admin'){
+                        res.render('home', {
+                            book: mutipleMongooseToObject(books),
+                            current: page,
+                            pages: Math.ceil(count / perPage)
+                        })
+                    }
+                    else{
+                        bills.find({})
+                             .then(bill => {
+                                 res.render('admin', {
+                                     bill: mutipleMongooseToObject(bill)
+                                 })
+                             })
+                        
+                    }
+                })
+            })
+    }
+    sortPriceAsc(req, res, next){
+        let perPage = 10;
+        let page = req.query.page    || 1;
+
+        Books.find({})
+             .skip((perPage * page) - perPage)
+             .limit(perPage)
+             .sort([['priceCurrent', 'asc']])
+             .exec(function(err, books) {
+                Books.count().exec(function(err, count) {
+                    
+                    if (err) return next(err);
+                    if(req.session.Authorization != 'admin'){
+                        res.render('home', {
+                            book: mutipleMongooseToObject(books),
+                            current: page,
+                            pages: Math.ceil(count / perPage)
+                        })
+                    }
+                    else{
+                        bills.find({})
+                             .then(bill => {
+                                 res.render('admin', {
+                                     bill: mutipleMongooseToObject(bill)
+                                 })
+                             })
+                        
+                    }
+                })
+            })
+    }
+    maxSold(req, res, next){
+        let perPage = 10;
+        let page = req.query.page    || 1;
+
+        Books.find({})
+             .skip((perPage * page) - perPage)
+             .limit(perPage)
+             .sort([['priceCurrent', 'asc']])
+             .exec(function(err, books) {
+                Books.count().exec(function(err, count) {
+                    
+                    if (err) return next(err);
+                    if(req.session.Authorization != 'admin'){
+                        res.render('home', {
+                            book: mutipleMongooseToObject(books),
+                            current: page,
+                            pages: Math.ceil(count / perPage)
+                        })
+                    }
+                    else{
+                        bills.find({})
+                             .then(bill => {
+                                 res.render('admin', {
+                                     bill: mutipleMongooseToObject(bill)
+                                 })
+                             })
+                        
+                    }
+                })
+            })
     }
 }   
         

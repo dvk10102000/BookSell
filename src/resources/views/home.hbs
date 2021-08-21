@@ -20,7 +20,7 @@
                             <a href="" class="category-item__link">Sách Toán Học</a>
                         </li> 
                         <li style="display: none;" class="caterory-item">
-                            <a id="pageCurrent" href="" class="category-item__link">{{current}}</a>
+                            <a id="pageCurrent" href="" class="category-item__link">{{count}}</a>
                         </li>
                          <li style="display: none;" class="caterory-item">
                             <a id="qtyPages" href="" class="category-item__link">{{pages}}</a>
@@ -35,7 +35,7 @@
                     <span class="home-filter__label">Sắp xếp theo</span>
                     <a class="home-filter__btn btn" href="/sortPopular">Phổ biến</a>
                     <button class="home-filter__btn btn btn--primary">Mới nhất</button>
-                    <button class="home-filter__btn btn">Bán chạy</button>
+                    <a href="/sortPopular" class="home-filter__btn btn">Bán chạy</a>
 
 
                     <div class="select-input">
@@ -43,11 +43,11 @@
                         <i class="select-input__icon fas fa-angle-down"></i>
                         <ul class="select-input__list">
                             <li class="select-input__item">
-                                <a href="" class="select-input__link">Giá thấp đến cao</a>
+                                <a href="/sortPriceAsc" class="select-input__link">Giá thấp đến cao</a>
                             
                             </li>
                             <li class="select-input__item">
-                                <a href="" class="select-input__link">Cao đến thap cao</a>
+                                <a href="/sortPriceDes" class="select-input__link">Cao đến thap cao</a>
                             
                             </li>
                         </ul>

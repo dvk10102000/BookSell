@@ -4,6 +4,7 @@ module.exports = function (req, res, next) {
         res.locals.checkState= req.session.isAuth;
         res.locals.permission= req.session.Authorization;
         res.locals.imageAvatar= req.session.imageAvatar;
+        
         // res.locals.fullName = "do van khang" ; 
     }
     next();

@@ -95,6 +95,7 @@ class DetailProductController{
     async logOut(req, res,next){
         const user = await User.findOne({ email : req.session.email });
         user.status = 'noActive';
+        user.timeOut = Date.now() - user.timeOut;
         User.updateOne({ email : req.session.email},user)
             .then();
         req.session.destroy((err) => {

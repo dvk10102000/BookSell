@@ -117,18 +117,18 @@
                 </span>
 
             
-                <span class="detail-product__right-mount_btn">-</span>
+                {{!-- <span class="detail-product__right-mount_btn">-</span>
                 <span class="detail_mount">1</span>
-                <span class="detail-product__right-mount_btn1">+</span>
+                <span class="detail-product__right-mount_btn1">+</span> --}}
                 <span class="detail-product__right-mount-avarable">{{this.quantity}} sản phẩn có sẵn</span>  
                 
             </div>
 
             <div class="detail-product__right-btn">
-                <button class="detail-product__right-cart-btn btn btn--primary">
+                <a href="/cart/add/{{this._id}}" class="detail-product__right-cart-btn btn btn--primary">
                     <i class="detail-product__right-cart-btn-icon fas fa-cart-plus"></i>
-                    Thêm vào giở hàng</button>
-                <button class="detail-product__right-buy-btn btn btn--primary">Mua ngay</button>
+                    Thêm vào giở hàng</a>
+                <a href="/cart/buyImediately/{{this._id}}" class="detail-productproduct__right-buy-btn btn btn--primary">Mua ngay</a>
 
             </div>
 

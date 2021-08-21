@@ -61,6 +61,55 @@ class cartController{
       
       
     }
+  async buyImediately(req, res, next) {
+    if(res.locals.checkState){ 
+      let user = await users.findOne({email : req.session.email});
+      let book = await books.findOne({_id : req.params.id});
+      
+      user.cart.price += book.priceCurrent;
+      
+      
+      
+      const isExisting = user.cart.items
+      .findIndex(objInItems => new String(objInItems.productId).trim() === new String(req.params.id).trim());
+      if (isExisting >= 0) {
+        user.cart.items[isExisting].qty += 1;
+      } else {
+        user.cart.items.push({ productId: req.params.id, imageBook: book.image,
+          nameBook: book.name, priceBook: book.priceCurrent, discriptionBook: book.description, qty: 1 });
+        }
+        
+        users.updateOne({_id : user._id}, user)
+        .then(() =>{
+          res.redirect('/cart/detailCart');
+        })     
+        
+      }
+      else{
+
+
+       let Cart = await CartNotLogin.findOne({id : req.signedCookies.sessionId});
+       let book = await books.findOne({_id : req.params.id});
+
+       Cart.cartContainer.price += book.priceCurrent;
+
+       const isExisting = Cart.cartContainer.items
+            .findIndex(objInItems => new String(objInItems.productId).trim() === new String(req.params.id).trim());
+
+      if (isExisting >= 0) {
+        Cart.cartContainer.items[isExisting].qty += 1;
+      } else {
+        Cart.cartContainer.items.push({ productId: req.params.id, imageBook: book.image,
+          nameBook: book.name, priceBook: book.priceCurrent, discriptionBook: book.description, qty: 1 });
+        }
+      CartNotLogin.updateOne({id : req.signedCookies.sessionId} , Cart)
+                  .then( () => {
+                    res.redirect('/cart/detailCart');
+                  })
+
+      
+      }
+  }
 
     async DestroyItemCart(req, res, next) {
       if(req.session.isAuth){

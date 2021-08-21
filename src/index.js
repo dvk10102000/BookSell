@@ -13,6 +13,7 @@ const isAuth = require('./app/middleware/is-auth');
 const listBook = require('./app/middleware/listNameBook');
 const sessionID = require('./app/middleware/sessionMiddleware');
 const renderCart = require('./app/middleware/renderCart');
+const visitor = require('./app/middleware/visitor');
 
 
 const port = 3000;
@@ -65,11 +66,11 @@ app.use(sessionID);
 app.use(isAuth);
 app.use(listBook);
 app.use(renderCart);
+app.use(visitor);
 
 app.set('view engine', 'hbs');
 
 app.set('views',path.join(__dirname,'resources/views'));
-
 
 
 

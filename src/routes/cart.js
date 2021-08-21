@@ -6,6 +6,7 @@ const CartController = require('../app/controllers/CartController');
 
 
 router.post('/deleteInListCart',CartController.deleteInListCart);
+router.get('/buyImediately/:id',CartController.buyImediately);
 router.post('/storeBill',CartController.storeBill);
 router.post('/buyItemChoosed',CartController.buyItemChoosed);
 router.get('/add/:id',CartController.getProduct);

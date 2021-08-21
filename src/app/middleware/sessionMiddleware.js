@@ -8,6 +8,7 @@ module.exports =  function(req, res, next){
         let sessionId = shortid.generate();
         res.cookie('sessionId', sessionId,{
             signed: true,
+           
         });
         
         let cart = new Cart({
