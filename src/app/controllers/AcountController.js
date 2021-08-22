@@ -95,13 +95,17 @@ class DetailProductController{
     async logOut(req, res,next){
         const user = await User.findOne({ email : req.session.email });
         user.status = 'noActive';
-        user.timeOut = Date.now() - user.timeOut;
+        let now = new Date();
+       
+        user.timeOut = now.toDateString();
+
         User.updateOne({ email : req.session.email},user)
-            .then();
+        .then();
         req.session.destroy((err) => {
             if (err) throw err;
             res.redirect("/acount/login");
           });
+        
     }
 
    async update(req, res,next){

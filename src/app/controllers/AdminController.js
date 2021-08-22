@@ -67,7 +67,10 @@ class HomeController {
         .then(bill =>{
             res.redirect('/');
         })
-    }  
+    } 
+    
+    
+
     managerItems(req, res, next){
        Books.find({})
             .then(books =>{
@@ -110,13 +113,7 @@ class HomeController {
                      })
                 
             }
-        })  
-
-            
-                        
-                     
-                        
-                
+        })             
     }
     async AddItems(req, res, next) {
         // await upload(req, res, function (err) {

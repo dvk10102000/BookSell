@@ -11,7 +11,7 @@
                     </h3>
                     <ul class="category-list">
                         <li class="caterory-item caterory-item--active">
-                            <a href="" class="category-item__link">Truyện Tranh</a>
+                            <a href="" class="category-item__link">Sách Lập Trình</a>
                         </li>
                         <li class="caterory-item">
                             <a href="" class="category-item__link">Sách Văn Học</a>
@@ -19,8 +19,14 @@
                         <li class="caterory-item">
                             <a href="" class="category-item__link">Sách Toán Học</a>
                         </li> 
+                        <li class="caterory-item">
+                            <a href="" class="category-item__link">Truyện</a>
+                        </li> 
+                        <li class="caterory-item">
+                            <a href="" class="category-item__link">Báo Chí</a>
+                        </li> 
                         <li style="display: none;" class="caterory-item">
-                            <a id="pageCurrent" href="" class="category-item__link">{{count}}</a>
+                            <a id="pageCurrent" href="" class="category-item__link">{{current}}</a>
                         </li>
                          <li style="display: none;" class="caterory-item">
                             <a id="qtyPages" href="" class="category-item__link">{{pages}}</a>
@@ -180,6 +186,7 @@
     pageCurrent = parseInt(pageCurrent.textContent);
     qtyPages = parseInt(qtyPages.textContent);
     let htmlPagination ; 
+    console.log(container_pagination);
     if(qtyPages > 0){
         htmlPagination = ''
         if(pageCurrent == 1){

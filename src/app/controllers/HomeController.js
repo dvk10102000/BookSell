@@ -20,8 +20,7 @@ class HomeController {
              .skip((perPage * page) - perPage)
              .limit(perPage)
              .exec(function(err, books) {
-                Books.count().exec(function(err, count) {
-                    
+                Books.count().exec(function(err, count) {                   
                     if (err) return next(err);
                     if(req.session.Authorization != 'admin'){
                         res.render('home', {

@@ -12,6 +12,6 @@ module.exports = function ( req, res, next){
 		req.session.page_views = 1;
 	
 	 }
-	console.log(req.session.page_views);
+	// console.log(req.session.page_views);
 	next();
 }
