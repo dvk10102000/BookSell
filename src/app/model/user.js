@@ -14,9 +14,6 @@ const user = new Schema({
     status: String,
     timeIn: Date,
     timeOut: Date,
-    historySearch:{
-        detailHistory : String,
-    },
     cart:{
         items:[{
             productId: {

@@ -2,9 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const bill = new Schema({
+    email: String,
     name: String,
     address: String,
     phoneNumber: String,
+    delivery: Boolean,
+    received : Boolean,
     status: Boolean, 
     cart:{
         items:[{

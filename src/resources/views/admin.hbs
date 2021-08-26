@@ -97,6 +97,7 @@
                    
                     <th scope="col">Trạng thái</th>
                     <th scope="col">Action</th>
+                    <th scope="col">Tình trạng đơn</th>
 
                 </tr>
                 </thead>
@@ -108,13 +109,26 @@
                             <td>{{this.created_at}}</td>
                             <td>{{this.phoneNumber}}</td>
                             <td>{{this.address}}</td>
-                            {{#if this.status}}
-                                <td>Đã xác nhận</td>
+                            {{#if this.delivery}}
+                                {{#if this.status}}
+                                    <td class="checkBill">Đã nhận hàng</td>
+                                    
+                                {{else}}
+                                    <td class="checkBill">Đang giao hàng</td>
+
+                                {{/if}}
+
+
+
+
                             {{else}}
-                                <td>Chờ xử lí</td>
+                                <td class="checkBill">Chờ xử lí</td>
                             {{/if}}
                             <td>
                                 <a href="/admin/detailBill/{{this._id}}">Xem chi tiết</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary btn_complete-invoice" style="background-color:#f7b924" href="/admin/complete/{{this._id}}">hoàn thành</a>
                             </td>
                         </tr>
                     {{/each}}
@@ -123,5 +137,28 @@
         </div>
     </div> 
 </div>
+<script>
+    const checkBill = document.querySelectorAll('.checkBill');
+    const btnCompleteBill = document.querySelectorAll('.btn_complete-invoice');
+    
+    for(let i = 0; i < checkBill.length ; i++){
+        if(checkBill[i].textContent == "Đang giao hàng" ){
+            btnCompleteBill[i].style.backgroundColor = '#d92550';
+            btnCompleteBill[i].textContent = "Kết thúc đơn";
+        }else if(checkBill[i].textContent == "Đã nhận hàng" ){
+            btnCompleteBill[i].style['pointer-events'] = 'none';
+
+            btnCompleteBill[i].style.backgroundColor = '#3ac47d';
+        }else if(checkBill[i].textContent == "Chờ xử lí"){
+            btnCompleteBill[i].textContent = "xác nhận giao hàng";
+
+            btnCompleteBill[i].style['pointer-events'] = 'none';
+        }
+
+      
+        
+    }
+    console.log(btnCompleteBill);
+</script>
 
  

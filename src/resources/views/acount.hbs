@@ -1,15 +1,15 @@
-<form class="acount__container" method="POST" action="/acount/update/{{this._id}}?_method=PUT">
+<form class="acount__container" method="POST" action="/acount/update/{{user._id}}?_method=PUT">
    <div class="grid acount__container-padding">
         <div class="acount__container-left">
             <div class="acount__container-left-main">
 
-                {{#if this.avartar}}
-                     <img src="/img/{{this.avartar}}" alt="Avartar" class="acount__container-left-main-img imageChange">
+                {{#if user.avartar}}
+                     <img src="/img/{{user.avartar}}" alt="Avartar" class="acount__container-left-main-img imageChange">
                 {{else}}
                     <img src="/img/avartarEmpty.jpg" alt="Avartar" class="acount__container-left-main-img imageChange">
                 {{/if}}
                 <div class="acount__container-left-main-right">
-                    <p class="acount__container-left-main-nameAcount">{{this.name}}</p>
+                    <p class="acount__container-left-main-nameAcount">{{user.name}}</p>
                     <p class="acount__container-left-main-editAcount">
                        <i class="fas fa-pencil-alt acount__container-left-main-editAcount-icon"></i>
                         Sửa hồ sơ
@@ -25,8 +25,8 @@
                     <li class="acount__container-left-bottom-address acount-information ">
                         Địa chỉ
                     </li>
-                    <li class="acount__container-left-bottom-address acount-information" >
-                        <a href="/cart/purchaseOrder" id="myOrder" class="">Đơn mua</a>
+                    <li class="acount__container-left-bottom-billOrder acount-information" >
+                        Đơn mua
                     </li>
                     <li class="acount__container-left-bottom-password acount-information ">
                         Đổi mật khẩu
@@ -47,12 +47,12 @@
                 <div class="acount__container-right-body-left">
                     <div class="acount__container-right-body-left-nameAcount">
                         <span class="acount__container-right-body-left-nameAcount-label">Email Đang Nhập</span>
-                        <span class="acount__container-right-body-left-nameAcount-content">{{this.email}}</span>
+                        <span class="acount__container-right-body-left-nameAcount-content">{{user.email}}</span>
                     </div>
 
                     <div class="acount__container-right-body-left-name">
                         <span class="acount__container-right-body-left-name-label">Tên</span>
-                        <input type="text"  value="{{this.name}}" name="name" class="acount__container-right-body-left-name-content">
+                        <input type="text"  value="{{user.name}}" name="name" class="acount__container-right-body-left-name-content">
                     </div>
 
                      <div class="acount__container-right-body-left-email">
@@ -65,7 +65,7 @@
 
                     <div class="acount__container-right-body-left-phone">
                         <span class="acount__container-right-body-left-phone-label">Số Điện Thoại</span>
-                        <span class="acount__container-right-body-left-phone-content">{{this.phoneNumber}}
+                        <span class="acount__container-right-body-left-phone-content">{{user.phoneNumber}}
                             <a id="change_phoneNumber">Thay đổi</a>
 
                         </span>
@@ -81,11 +81,11 @@
                         <input class="acount__choose" type="radio"  name="gender" value="other">
                         <label for="javascript">khác</label>
                     </div>
-                    <span class="class__temp-getId" style="visibility:hidden" >{{this.gender}}</span>
+                    <span class="class__temp-getId" style="visibility:hidden" >{{user.gender}}</span>
                     {{!-- style="visibility:hidden" --}}
                     <div class="acount__container-right-body-left-born">
                         <span class="acount__container-right-body-left-born-label">Ngày Sinh</span>
-                       <input type="text"  value="{{this.birth}}" name="birth" class="acount__container-right-body-left-born-content">
+                       <input type="text"  value="{{user.birth}}" name="birth" class="acount__container-right-body-left-born-content">
                     </div> 
 
                     <div class="acount__container-right-body-left-btn">
@@ -98,8 +98,8 @@
                 <div class="acount__container-right-body-right" >
 
 
-                    {{#if this.avartar}}
-                        <img src="/img/{{this.avartar}}" alt="Avartar" class="acount__container-right-body-right-img imageChange">  
+                    {{#if user.avartar}}
+                        <img src="/img/{{user.avartar}}" alt="Avartar" class="acount__container-right-body-right-img imageChange">  
                     {{else}}
                         <img src="/img/avartarEmpty.jpg" alt="Avartar" class="acount__container-right-body-right-img imageChange"> 
                     {{/if}}
@@ -121,17 +121,17 @@
               
                     <div class="acount__address-phone-change-nameAcount">
                         <span class="acount__address-phone-change-nameAcount-label">Email Đang Nhập</span>
-                        <span class="acount__address-phone-change-nameAcount-content">{{this.email}}</span>
+                        <span class="acount__address-phone-change-nameAcount-content">{{user.email}}</span>
                     </div>
 
                     <div class="acount__address-phone-change-nameAddress">
                         <span class="acount__address-phone-change-name-label">Địa chỉ</span>
-                        <input type="text"  value="{{this.address}}" name="address" class="acount__address-phone-change-name-content">
+                        <input type="text"  value="{{user.address}}" name="address" class="acount__address-phone-change-name-content">
                     </div>
 
                     <div class="acount__address-phone-change-phone">
                         <span class="acount__address-phone-change-phone-label">Số Điện Thoại</span>
-                         <input type="text"  value="{{this.phoneNumber}}" name="phoneNumber" class="acount__address-phone-change-phone-content">
+                         <input type="text"  value="{{user.phoneNumber}}" name="phoneNumber" class="acount__address-phone-change-phone-content">
                         
                         </span>
                     </div>
@@ -143,6 +143,314 @@
 
 
           </div>
+
+          <div class="acount_information_bill" style="display: none;">
+            <div class="status_bill">
+                  <span class="status_bill-all status_bill-action status_bill-active">Tất cả</span>
+                  <span class="status_bill-waitToConfirm status_bill-action">Chờ xác nhận</span>
+                  <span class="status_bill-delivery status_bill-action">Đang giao</span>
+                  <span class="status_bill-completeDelivery status_bill-action">Đã giao</span>
+            </div>
+
+            <div class="search_bill">
+                 <i class="search_bill-input-icon fas fa-search"></i>
+                 <input type="text" class="search_bill-input" placeholder="Tìm kiếm theo tên sản phẩm ">
+
+            </div>
+
+            <div class="total__bill_bought" >
+                {{#each bills}} 
+                <div class="container__buyItemChoosed-listItems">
+                    <div class="container__buyItemChoosed-listItems-narbar">
+                        <span class="container__buyItemChoosed-listItems-name">Sản phẩm</span>
+                        <span class="container__buyItemChoosed-listItems-untilPrice">Đơn giá</span>
+                        <span class="container__buyItemChoosed-listItems-qty">Số lượng</span>
+                        <span class="container__buyItemChoosed-listItems-totalPrice">Thành tiền</span>
+                    </div>
+                    <div class="container__buyItemChoosed-listItems-nameStore">
+                        <i class="container__buyItemChoosed-listItems-nameStore-icon fas fa-book"></i>
+                        Fourteen Book Store
+                    </div> 
+                
+                    <div class="container__buyItemChoosed-listItems-stock">
+                        <input style="display: none;"  class="detail_cart-navbar-checkBox" name="productId[]" value="{{this.productId}}">
+                        {{#each this.cart.items}}
+                        <div class="container__buyItemChoosed-listItems-infor">
+                            <span class="container__buyItemChoosed-listItems-infor_left">
+                                <img src="/img/{{this.imageBook}}" alt="" class="container__buyItemChoosed-listItems-img">
+                                <span class="container__buyItemChoosed-listItems-nameDetail">{{this.nameBook}}</span>
+                            </span>
+                            <span class="container__buyItemChoosed-listItems-untilPriceDetail">
+                                <span class="container__buyItemChoosed-listItems-untilPriceDetail-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-untilPriceDetail-qty">{{this.priceBook}}</span>
+                            </span>
+                            <span class="container__buyItemChoosed-listItems-qtyDetail">{{this.qty}}</span>
+                            <span class="container__buyItemChoosed-listItems-totalPriceDetail">
+                                <span class="container__buyItemChoosed-listItems-totalPriceDetail-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-totalPriceDetail-qty">10000</span>
+                            </span>
+
+                        </div>
+                        {{/each}}
+                        <div class="container__buyItemChoosed-listItems-reminder">
+                        
+                            <div class="container__buyItemChoosed-listItems-reminder-between">
+
+                                <div class="container__buyItemChoosed-listItems-reminder-delivery">Đơn vị vận chuyển</div>
+                                <div class="container__buyItemChoosed-listItems-reminder-untilDelivery">
+                                    <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p">Nhanh</p>
+                                    <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p1 history_bill-time-delivery">Thời gian tất cả các ngày trong tuần</p>
+                                    {{!-- <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p2">(Do ảnh hưởng của dịch COVID19 , giao hàng co thể chậm hơn 1-5 ngày)</p> --}}
+                                </div>
+                            </div>
+                            <div class="container__buyItemChoosed-listItems-reminder-between1">
+                                <p href="" class="container__buyItemChoosed-listItems-reminder-between1-change">THAY ĐỔI</p>
+                            </div>
+                            <div class="container__buyItemChoosed-listItems-reminder-priceFree">
+                                <span class="container__buyItemChoosed-listItems-reminder-priceFree-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-reminder-priceFree-qty">30</span>
+                            </div>
+                        </div>
+
+                        <div class="container__buyItemChoosed-totalprice-ship-item-choosed">
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title">Tổng số tiền (</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title-qty">1</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title"> sản phẩm):</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed--price">
+                                <span class="price-until-item">$</span>
+                                <span class="price-until-qty">{{this.cart.price}}</span>
+                            </span>
+                        </div>
+
+                    </div>
+            
+                </div>
+                {{/each}}
+
+            </div>
+
+            <div class="wait__to_confirm_invoice" style="display: none;" >
+                {{#each billNotConfirm}} 
+                <div class="container__buyItemChoosed-listItems">
+                    <div class="container__buyItemChoosed-listItems-narbar">
+                        <span class="container__buyItemChoosed-listItems-name">Sản phẩm</span>
+                        <span class="container__buyItemChoosed-listItems-untilPrice">Đơn giá</span>
+                        <span class="container__buyItemChoosed-listItems-qty">Số lượng</span>
+                        <span class="container__buyItemChoosed-listItems-totalPrice">Thành tiền</span>
+                    </div>
+                    <div class="container__buyItemChoosed-listItems-nameStore">
+                        <i class="container__buyItemChoosed-listItems-nameStore-icon fas fa-book"></i>
+                        Fourteen Book Store
+                    </div> 
+                
+                    <div class="container__buyItemChoosed-listItems-stock">
+                        <input style="display: none;"  class="detail_cart-navbar-checkBox" name="productId[]" value="{{this.productId}}">
+                        {{#each this.cart.items}}
+                        <div class="container__buyItemChoosed-listItems-infor">
+                            <span class="container__buyItemChoosed-listItems-infor_left">
+                                <img src="/img/{{this.imageBook}}" alt="" class="container__buyItemChoosed-listItems-img">
+                                <span class="container__buyItemChoosed-listItems-nameDetail">{{this.nameBook}}</span>
+                            </span>
+                            <span class="container__buyItemChoosed-listItems-untilPriceDetail">
+                                <span class="container__buyItemChoosed-listItems-untilPriceDetail-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-untilPriceDetail-qty">{{this.priceBook}}</span>
+                            </span>
+                            <span class="container__buyItemChoosed-listItems-qtyDetail">{{this.qty}}</span>
+                            <span class="container__buyItemChoosed-listItems-totalPriceDetail">
+                                <span class="container__buyItemChoosed-listItems-totalPriceDetail-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-totalPriceDetail-qty">10000</span>
+                            </span>
+
+                        </div>
+                        {{/each}}
+                        <div class="container__buyItemChoosed-listItems-reminder">
+                        
+                            <div class="container__buyItemChoosed-listItems-reminder-between">
+
+                                <div class="container__buyItemChoosed-listItems-reminder-delivery">Đơn vị vận chuyển</div>
+                                <div class="container__buyItemChoosed-listItems-reminder-untilDelivery">
+                                    <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p">Nhanh</p>
+                                    <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p1 history_bill-time-delivery">Thời gian tất cả các ngày trong tuần</p>
+                                    {{!-- <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p2">(Do ảnh hưởng của dịch COVID19 , giao hàng co thể chậm hơn 1-5 ngày)</p> --}}
+                                </div>
+                            </div>
+                            <div class="container__buyItemChoosed-listItems-reminder-between1">
+                                <p href="" class="container__buyItemChoosed-listItems-reminder-between1-change">THAY ĐỔI</p>
+                            </div>
+                            <div class="container__buyItemChoosed-listItems-reminder-priceFree">
+                                <span class="container__buyItemChoosed-listItems-reminder-priceFree-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-reminder-priceFree-qty">30</span>
+                            </div>
+                        </div>
+
+                        <div class="container__buyItemChoosed-totalprice-ship-item-choosed">
+                            <span class="destroy_invoice">
+                                <a href="/cart/distroyBill/{{this._id}}" class="btn btn-primary btn_destroy_invoice">Hủy đơn hàng</a>
+                            </span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title">Tổng số tiền (</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title-qty">1</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title"> sản phẩm):</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed--price">
+                                <span class="price-until-item">$</span>
+                                <span class="price-until-qty">{{this.cart.price}}</span>
+                            </span>
+                        </div>
+
+                    </div>
+            
+                </div>
+                {{/each}}
+
+            </div>
+
+            <div class="invoice_Is_Delivering" style="display: none;" >
+                {{#each billDelivering}} 
+                <div class="container__buyItemChoosed-listItems">
+                    <div class="container__buyItemChoosed-listItems-narbar">
+                        <span class="container__buyItemChoosed-listItems-name">Sản phẩm</span>
+                        <span class="container__buyItemChoosed-listItems-untilPrice">Đơn giá</span>
+                        <span class="container__buyItemChoosed-listItems-qty">Số lượng</span>
+                        <span class="container__buyItemChoosed-listItems-totalPrice">Thành tiền</span>
+                    </div>
+                    <div class="container__buyItemChoosed-listItems-nameStore">
+                        <i class="container__buyItemChoosed-listItems-nameStore-icon fas fa-book"></i>
+                        Fourteen Book Store
+                    </div> 
+                
+                    <div class="container__buyItemChoosed-listItems-stock">
+                        <input style="display: none;"  class="detail_cart-navbar-checkBox" name="productId[]" value="{{this.productId}}">
+                        {{#each this.cart.items}}
+                        <div class="container__buyItemChoosed-listItems-infor">
+                            <span class="container__buyItemChoosed-listItems-infor_left">
+                                <img src="/img/{{this.imageBook}}" alt="" class="container__buyItemChoosed-listItems-img">
+                                <span class="container__buyItemChoosed-listItems-nameDetail">{{this.nameBook}}</span>
+                            </span>
+                            <span class="container__buyItemChoosed-listItems-untilPriceDetail">
+                                <span class="container__buyItemChoosed-listItems-untilPriceDetail-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-untilPriceDetail-qty">{{this.priceBook}}</span>
+                            </span>
+                            <span class="container__buyItemChoosed-listItems-qtyDetail">{{this.qty}}</span>
+                            <span class="container__buyItemChoosed-listItems-totalPriceDetail">
+                                <span class="container__buyItemChoosed-listItems-totalPriceDetail-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-totalPriceDetail-qty">10000</span>
+                            </span>
+
+                        </div>
+                        {{/each}}
+                        <div class="container__buyItemChoosed-listItems-reminder">
+                        
+                            <div class="container__buyItemChoosed-listItems-reminder-between">
+
+                                <div class="container__buyItemChoosed-listItems-reminder-delivery">Đơn vị vận chuyển</div>
+                                <div class="container__buyItemChoosed-listItems-reminder-untilDelivery">
+                                    <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p">Nhanh</p>
+                                    <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p1 history_bill-time-delivery">Thời gian tất cả các ngày trong tuần</p>
+                                    {{!-- <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p2">(Do ảnh hưởng của dịch COVID19 , giao hàng co thể chậm hơn 1-5 ngày)</p> --}}
+                                </div>
+                            </div>
+                            <div class="container__buyItemChoosed-listItems-reminder-between1">
+                                <p href="" class="container__buyItemChoosed-listItems-reminder-between1-change">THAY ĐỔI</p>
+                            </div>
+                            <div class="container__buyItemChoosed-listItems-reminder-priceFree">
+                                <span class="container__buyItemChoosed-listItems-reminder-priceFree-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-reminder-priceFree-qty">30</span>
+                            </div>
+                        </div>
+
+                        <div class="container__buyItemChoosed-totalprice-ship-item-choosed">
+                            
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title">Tổng số tiền (</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title-qty">1</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title"> sản phẩm):</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed--price">
+                                <span class="price-until-item">$</span>
+                                <span class="price-until-qty">{{this.cart.price}}</span>
+                            </span>
+                        </div>
+
+                    </div>
+            
+                </div>
+                {{/each}}
+
+            </div>
+
+            <div class="deliveried__invoiced" style="display: none;" >
+                {{#each deliveried}} 
+                <div class="container__buyItemChoosed-listItems">
+                    <div class="container__buyItemChoosed-listItems-narbar">
+                        <span class="container__buyItemChoosed-listItems-name">Sản phẩm</span>
+                        <span class="container__buyItemChoosed-listItems-untilPrice">Đơn giá</span>
+                        <span class="container__buyItemChoosed-listItems-qty">Số lượng</span>
+                        <span class="container__buyItemChoosed-listItems-totalPrice">Thành tiền</span>
+                    </div>
+                    <div class="container__buyItemChoosed-listItems-nameStore">
+                        <i class="container__buyItemChoosed-listItems-nameStore-icon fas fa-book"></i>
+                        Fourteen Book Store
+                    </div> 
+                
+                    <div class="container__buyItemChoosed-listItems-stock">
+                        <input style="display: none;"  class="detail_cart-navbar-checkBox" name="productId[]" value="{{this.productId}}">
+                        {{#each this.cart.items}}
+                        <div class="container__buyItemChoosed-listItems-infor">
+                            <span class="container__buyItemChoosed-listItems-infor_left">
+                                <img src="/img/{{this.imageBook}}" alt="" class="container__buyItemChoosed-listItems-img">
+                                <span class="container__buyItemChoosed-listItems-nameDetail">{{this.nameBook}}</span>
+                            </span>
+                            <span class="container__buyItemChoosed-listItems-untilPriceDetail">
+                                <span class="container__buyItemChoosed-listItems-untilPriceDetail-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-untilPriceDetail-qty">{{this.priceBook}}</span>
+                            </span>
+                            <span class="container__buyItemChoosed-listItems-qtyDetail">{{this.qty}}</span>
+                            <span class="container__buyItemChoosed-listItems-totalPriceDetail">
+                                <span class="container__buyItemChoosed-listItems-totalPriceDetail-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-totalPriceDetail-qty">10000</span>
+                            </span>
+
+                        </div>
+                        {{/each}}
+                        <div class="container__buyItemChoosed-listItems-reminder">
+                        
+                            <div class="container__buyItemChoosed-listItems-reminder-between">
+
+                                <div class="container__buyItemChoosed-listItems-reminder-delivery">Đơn vị vận chuyển</div>
+                                <div class="container__buyItemChoosed-listItems-reminder-untilDelivery">
+                                    <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p">Nhanh</p>
+                                    <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p1 history_bill-time-delivery">Thời gian tất cả các ngày trong tuần</p>
+                                    {{!-- <p class="container__buyItemChoosed-listItems-reminder-untilDelivery-p2">(Do ảnh hưởng của dịch COVID19 , giao hàng co thể chậm hơn 1-5 ngày)</p> --}}
+                                </div>
+                            </div>
+                            <div class="container__buyItemChoosed-listItems-reminder-between1">
+                                <p href="" class="container__buyItemChoosed-listItems-reminder-between1-change">THAY ĐỔI</p>
+                            </div>
+                            <div class="container__buyItemChoosed-listItems-reminder-priceFree">
+                                <span class="container__buyItemChoosed-listItems-reminder-priceFree-until">$</span>
+                                <span class="container__buyItemChoosed-listItems-reminder-priceFree-qty">30</span>
+                            </div>
+                        </div>
+
+                        <div class="container__buyItemChoosed-totalprice-ship-item-choosed">
+                            
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title">Tổng số tiền (</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title-qty">1</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed-title"> sản phẩm):</span>
+                            <span class="container__buyItemChoosed-totalprice-ship-item-choosed--price">
+                                <span class="price-until-item">$</span>
+                                <span class="price-until-qty">{{this.cart.price}}</span>
+                            </span>
+                        </div>
+
+                    </div>
+            
+                </div>
+                {{/each}}
+
+            </div>
+            
+            
+          </div>
+
+          
         </div>
    </div>
 
@@ -156,22 +464,69 @@
     const myAddress = document.querySelector('.acount__container-left-bottom-address');
     const myAcount = document.querySelector('.acount__container-left-bottom-acount');
     const changePhoneNumber = document.querySelector('#change_phoneNumber');
-    
+    const billOrderCurrentAndHistory = document.querySelector('.acount__container-left-bottom-billOrder');
+    const billOrderContent = document.querySelector('.acount_information_bill');
+    const totalBillGetted = document.querySelector('.total__bill_bought');
+    const invoiceWaitToConfirm = document.querySelector('.wait__to_confirm_invoice');
+    const btnSeeTotalBill = document.querySelector('.status_bill-all');
+    const btnSeeInvoiceDelivering = document.querySelector('.status_bill-delivery');
+    const btnDeliveried = document.querySelector('.status_bill-completeDelivery');
+    const btnSeeBillConfirm = document.querySelector('.status_bill-waitToConfirm');
+    const invoiceDelivering = document.querySelector('.invoice_Is_Delivering');
+    const handleBtnSeeInvoice = document.querySelectorAll('.status_bill span'); 
+    const deliveried__invoiced = document.querySelector('.deliveried__invoiced');
+    console.log(btnDeliveried)
 
-    
+    for(let i = 0; i <handleBtnSeeInvoice.length ; i++){
+        handleBtnSeeInvoice[i].addEventListener('click',function(e){
+            document.querySelector('.status_bill-action.status_bill-active').classList.remove('status_bill-active');
+            handleBtnSeeInvoice[i].classList.add("status_bill-active");
+        })
+    }
 
     changePhoneNumber.addEventListener('click',functionChangePhoneNumber);
     myAddress.addEventListener('click',functionChangePhoneNumber);
+
+    function functionChangePhoneNumber(e) {
+        interfaceAddress.style.display = 'block';
+        interfaceInformatinDetail.style.display = 'none';
+        billOrderContent.style.display = 'none';
+
+    }
     myAcount.addEventListener('click',function(e) {
         interfaceInformatinDetail.style.display = 'block';
         interfaceAddress.style.display = 'none';
+        billOrderContent.style.display = 'none';
     })
-
-    function functionChangePhoneNumber(e) {
+    billOrderCurrentAndHistory.addEventListener('click',function(e) {
+        billOrderContent.style.display = 'block';
         interfaceInformatinDetail.style.display = 'none';
-        interfaceAddress.style.display = 'block';
-    }
-
+        interfaceAddress.style.display = 'none';
+    })
+    btnSeeTotalBill.addEventListener('click',function(e) {
+        totalBillGetted.style.display = 'block';
+        invoiceWaitToConfirm.style.display = 'none';
+        invoiceDelivering.style.display = 'none';
+        deliveried__invoiced.style.display = 'none';
+    })
+     btnSeeBillConfirm.addEventListener('click',function(e) {
+        invoiceWaitToConfirm.style.display = 'block';
+        totalBillGetted.style.display = 'none';
+        deliveried__invoiced.style.display = 'none';
+        invoiceDelivering.style.display = 'none';
+    })
+    btnSeeInvoiceDelivering.addEventListener('click',function(e) {
+        invoiceDelivering.style.display = 'block';
+        totalBillGetted.style.display = 'none';
+        deliveried__invoiced.style.display = 'none';
+        invoiceWaitToConfirm.style.display = 'none';
+    })
+    btnDeliveried.addEventListener('click',function(e) {
+        deliveried__invoiced.style.display = 'block';
+        invoiceDelivering.style.display = 'none';
+        totalBillGetted.style.display = 'none';
+        invoiceWaitToConfirm.style.display = 'none';
+    })
 
     let genderID = container__getID.textContent;
     for(let i = 0; i < checkGender.length; i++) {

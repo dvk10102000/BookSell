@@ -59,13 +59,14 @@ class HomeController {
                     
                 }
            }
-        
-    } )
-   
-    bill.status = true;
-    bills.updateOne({_id : req.params.id},bill)
-        .then(bill =>{
-            res.redirect('/');
+            
+        } )
+    
+        bill.delivery =  true;
+        // bill.status =  true;
+        bills.updateOne({_id : req.params.id},bill)
+            .then(bill =>{
+                res.redirect('/');
         })
     } 
     
@@ -171,6 +172,17 @@ class HomeController {
              .then(user => {
                  res.render('managerUser',{user : mutipleMongooseToObject(user)});
              })
+    }
+    async complete(req, res, next) {
+       let bill = await bills.findOne({_id : req.params.id});
+       
+    
+        bill.status =  true;
+        // bill.status =  true;
+        bills.updateOne({_id : req.params.id},bill)
+            .then(bill =>{
+                res.redirect('/');
+        })
     }
 }   
         

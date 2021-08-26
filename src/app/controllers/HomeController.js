@@ -30,7 +30,7 @@ class HomeController {
                         })
                     }
                     else{
-                        bills.find({})
+                        bills.find({received: true})
                              .then(bill => {
                                  res.render('admin', {
                                      bill: mutipleMongooseToObject(bill)

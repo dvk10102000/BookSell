@@ -282,13 +282,16 @@ class cartController{
         if(req.session.isAuth){
           let user =  await users.findOne({email : req.session.email});
           let bill = await  new Bill({
+            email: user.email,
             name :user.name,
             address : user.address,
             phoneNumber : user.phoneNumber,
+            delivery : false,
+            received: true,
             status:0,
 
           });
-
+          
           let productIdArr = req.body.productId;
           let cartUpdate = user.cart;
           let saveIndex = [];
@@ -301,7 +304,14 @@ class cartController{
               }
           })
           
-          
+          // console.log(saveItemIsChoosed);
+          // bill.cart.items = saveIndex;
+
+          for(let i = 0; i < saveItemIsChoosed.length; i++) {
+
+            bill.cart.price += await saveItemIsChoosed[i].priceBook * saveItemIsChoosed[i].qty+30;
+          }
+
           for(let i = 0; i < saveIndex.length; i++) {        
             cartUpdate.price -= await cartUpdate.items[saveIndex[i]].priceBook * cartUpdate.items[saveIndex[i]].qty;               
           }
@@ -327,6 +337,7 @@ class cartController{
             name : req.body.name,
             address : req.body.address,
             phoneNumber : req.body.phoneNumber,
+            received: true,
             status:0,
 
           });
@@ -373,6 +384,22 @@ class cartController{
           }
       
      }
+
+     async distroyBill(req, res, next) {
+        let bill = await Bill.findOne({_id: req.params.id});
+                  
+        bill.received = false;
+
+        Bill.updateOne({_id: req.params.id},bill)
+            .then(function(){
+              res.redirect('/acount');
+            })
+        //  await Bill.updateMany({status: false})
+        //             .then( () => {
+        //               res.redirect('/');
+        //             })
+     }
+
   }
   module.exports =  new cartController;
   

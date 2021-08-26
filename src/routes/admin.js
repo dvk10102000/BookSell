@@ -13,5 +13,6 @@ route.get('/update/:id',AdminController.update);
 route.delete('/distroy/:id',AdminController.distroy);
 route.get('/detailBill/:id',AdminController.detailBill);
 route.get('/confirmOrder/:id',AdminController.confirmOrder);
+route.get('/complete/:id',AdminController.complete);
 
 module.exports = route;

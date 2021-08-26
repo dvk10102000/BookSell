@@ -1,15 +1,32 @@
 const User = require('../model/user');
+const Bill = require('../model/bill');
 const { mongooseToObject } = require('../../util/mongoose');
+const { mutipleMongooseToObject } = require('../../util/mongoose');
 
 class DetailProductController{
-    show(req, res,next){
-        User.findOne({email : req.session.email})
-            .then(user => {
-                    res.render('acount', 
-                    mongooseToObject(user),
-                    )
-         })
-            .catch(next);
+    async show(req, res,next){
+        // User.findOne({email : req.session.email})
+        //     .then(user => {
+        //             res.render('acount', 
+        //             mongooseToObject(user),
+        //             )
+        //  })
+        //     .catch(next);
+
+        let user = await User.findOne({email : req.session.email});
+        let bills = await Bill.find({email : req.session.email, $or: [{ received: false }, { status: true }]});
+        let billNotConfirm = await Bill.find({email : req.session.email, status:false, delivery: false, received: true});
+        let billDelivering = await Bill.find({email : req.session.email,status:false, delivery: true});
+        let deliveried = await Bill.find({email : req.session.email, status:true});
+        // console.log(bills);
+        res.render('acount', {
+            user:mongooseToObject(user),
+            bills : mutipleMongooseToObject(bills),
+            billNotConfirm : mutipleMongooseToObject(billNotConfirm),
+            billDelivering : mutipleMongooseToObject(billDelivering),
+            deliveried : mutipleMongooseToObject(deliveried),
+        })
+        
       
         
     }

@@ -16,7 +16,7 @@
     height:80px;
     display: flex;
     position: relative;
-    border-bottom: 1px solid rgb(206, 194, 194);
+    border-bottom: 1px solid rgb(206 194 194 / 14%);
     
 }
 .acount__container-left-main-right{
@@ -81,7 +81,7 @@
 .acount__container-left-bottom-acount{
 
 }
-
+.acount__container-left-bottom-billOrder,
 .acount__container-left-bottom-address{
     padding-left: 25px;
 }
@@ -94,16 +94,31 @@
 .acount__container-right{
     margin-left: 11px;
     width: 1040px;
-    background-color: #fff;
+    /* background-color: #fff; */
     
-    padding-left: 25px;
+    /* padding-left: 25px; */
     border-radius: 1px;
     position: relative;
     margin-bottom: 30px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
    
 }
+.acount_information_detail{
+    background-color: #fff;
+    padding-left: 25px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    padding-bottom: 30px;
 
+    /* display: none; */
+    
+
+}
+.acount_information_address_change{
+    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    background-color: #fff;
+    padding-bottom: 30px;
+    padding-left: 25px;
+    display: none;
+}
 .acount__container-right-main{
     
     height:80px;
@@ -284,6 +299,89 @@
 .acount__address-phone-change-btn{
     margin: 70px 0 70px 250px;
 }
-.acount_information_address_change{
-    display: none;
+
+
+/* history and current bill */
+.acount_information_bill{
+    /* display: none; */
+    
+}
+
+.status_bill{
+    height:55px;
+    line-height:55px;
+    font-size: 2rem;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+
+}
+
+.status_bill-delivery:hover,
+.status_bill-completeDelivery:hover,
+.status_bill-all:hover,
+.status_bill-waitToConfirm:hover{
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.status_bill-all{
+    padding-left: 12px;
+    width: 24%;
+    display:inline-block;
+    text-align:center;
+}
+.status_bill-waitToConfirm{
+    width: 25%;
+    text-align:center;
+    
+    display:inline-block;
+}
+.status_bill-delivery{
+    width: 24%;
+    text-align:center;
+    
+    display:inline-block;
+}
+.status_bill-completeDelivery{
+    width: 24%;
+    
+    text-align:center;
+    display:inline-block;
+}
+.status_bill-active{
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.search_bill{
+    margin: 15px 0;
+    height:44px;
+    line-height:44px;
+    background-color: #eaeaea;
+    position: relative;
+    border-radius:3px;
+}
+.search_bill-input-icon{
+    font-size: 2rem;
+    top: 12px;
+    left: 14px;
+    color: #bbbbbb;
+    /* font-weight: 400; */
+    position: absolute;
+}
+.search_bill-input{
+    padding-left: 50px;
+    width: 94.8%;
+    font-size: 1.4rem;
+    border: none;
+    border-radius:3px;
+    outline: none;
+    background-color:#eaeaea;
+}
+.history_bill-time-delivery{
+    width: 155px;
+}
+.btn_destroy_invoice{
+    color: #fff000;
 }
