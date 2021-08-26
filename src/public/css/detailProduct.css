@@ -333,3 +333,24 @@
     border-top: 1px solid #ccc;
     /* border-bottom: 1px solid #ccc; */
 }
+.comment__text-typing-input{
+    font-size: 1.6rem;
+    margin-left: 20px;
+    opacity: 0.8;
+    box-shadow: inset 0 2px 0 0 rgb(0 0 0 / 2%);
+    border: 1px solid rgba(0,0,0,.14);
+    outline: none;
+    transition: border-color .3s ease-in-out,box-shadow .3s ease-in-out,background-color .3s ease-in-out;
+}
+.comment__detail-item-contain-img-user-typing{
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 33px;
+    width: 3%;
+    margin-bottom: 16px;
+}
+.comment__detail-item-contain-name-user-typing{
+    font-weight: 500;
+    font-size:2rem;
+    padding-left: 10px;
+}

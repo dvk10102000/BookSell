@@ -14,6 +14,12 @@ const Books = new Schema({
     publicLocation: String,
     image: String,
     slug :String,
+    comment:[{
+        name:String,
+        time : Date,
+        content: String,
+        avatar: String,
+    }]
 })
 
 // module.exports = mongoose.model("Book", Books);
