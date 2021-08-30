@@ -39,8 +39,8 @@
             <div class="grid__column-10">
                 <div class="home-filter">
                     <span class="home-filter__label">Sắp xếp theo</span>
-                    <a class="home-filter__btn btn" href="/sortPopular">Phổ biến</a>
-                    <button class="home-filter__btn btn btn--primary">Mới nhất</button>
+                    <a href="/sortPopular" class="home-filter__btn btn" >Phổ biến</a>
+                    <a href="/sortPopular" class="home-filter__btn btn btn--primary">Mới nhất</a>
                     <a href="/sortPopular" class="home-filter__btn btn">Bán chạy</a>
 
 
@@ -92,7 +92,7 @@
                                <a href="/book/detailBook/{{this._id}}">
                                     <div class="home-product-item__img" style="background-image: url(/img/{{this.image}});"></div>
                                </a>
-                                <span class="home-product-item__getImg" style="visibility:hidden" >{{this.image}}</span>
+                                {{!-- <span class="home-product-item__getImg" style="visibility:hidden" >{{this.image}}</span> --}}
                                 
                                 <h4 class="home-product-item__nameMain" style="margin:5px 0 0 10px;">{{this.name}}</h4>
                                 <h4 class="home-product-item__name">{{this.description}}</h4>
