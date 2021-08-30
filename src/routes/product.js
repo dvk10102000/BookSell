@@ -3,9 +3,9 @@ const router =  express.Router();
 
 const ProductController = require('../app/controllers/ProductController');
 
+
+router.post('/comment',ProductController.comment);
 router.get('/detailBook/:id',ProductController.show);
-// router.post('/searchBook',ProductController.searchBook);
-// router.get('/searchBook',ProductController.searchBook);
 
 module.exports = router;
 

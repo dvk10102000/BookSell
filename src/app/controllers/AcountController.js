@@ -2,8 +2,10 @@ const User = require('../model/user');
 const Bill = require('../model/bill');
 const { mongooseToObject } = require('../../util/mongoose');
 const { mutipleMongooseToObject } = require('../../util/mongoose');
+// const { Server } = require("socket.io");
+// const io = new Server(server);
 
-class DetailProductController{
+class AcountController{
     async show(req, res,next){
         // User.findOne({email : req.session.email})
         //     .then(user => {
@@ -152,7 +154,7 @@ class DetailProductController{
 
 }
 
-module.exports =  new DetailProductController;
+module.exports =  new AcountController;
 
 
 

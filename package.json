@@ -2,9 +2,9 @@
   "name": "booksell",
   "version": "1.0.0",
   "description": "\"exercise fourteen\"",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon --inspect src/index.js",
+    "start": "nodemon --inspect src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,6 +30,7 @@
     "mongoose": "^5.13.3",
     "multer": "^1.4.3",
     "nodemon": "^2.0.12",
-    "shortid": "^2.2.16"
+    "shortid": "^2.2.16",
+    "socket.io": "^4.1.3"
   }
 }

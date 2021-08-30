@@ -13,9 +13,15 @@
             <span class="detail_cart-navbar-price">Số Tiền</span>
             <span class="detail_cart-navbar-handle">Thao tác</span>
         </div>
+        {{#if checkState}}
+            <span class="get_id_contain-cart" style="display: none;">{{user._id}}</span>
+        {{else}}
+            <span class="get_id_contain-cart" style="display: none;">{{cartNotLogin._id}}</span>
+        {{/if}}
 
         {{#if checkState}}
             {{#each user.cart.items}}
+
                 <div class="detail_cart-navbar detail_cart-navbar_items ">
                     <input type="checkbox" aria-label="Checkbox for following text input" class="detail_cart-navbar-checkBox" name="productId[]" value="{{this.productId}}">
                     <span class="detail_cart-navbar-product detail_cart-navbar-product-item">
@@ -25,11 +31,11 @@
                     <span class="detail_cart-navbar-cost detail_cart-navbar-cost-item">{{this.priceBook}}</span>
                     <span class="detail_cart-navbar-qty detail_cart-navbar-qty-item">
 
-                        <a href=""  class="detail_cart-navbar-qty-item-cart">-</a>
+                        <a href=""  class="detail_cart-navbar-qty-item-cart btn-reduce_item">-</a>
                         <span class="detail_cart-navbar-qty-item-cart detail_cart-navbar-qty-item-cart-qty">{{this.qty}}</span>
                         <a href=""  class="detail_cart-navbar-qty-item-cart detail_cart-navbar-qty-item-cart-add">+</a>
                         {{!-- <a class="detail_cart-navbar-qty-item-cart detail_cart-navbar-qty-item-cart-add">+</a> --}}
-
+                        <span id="get_id-in-cart" style="display: none;">{{this._id}}</span>
                     </span>
                     <span class="detail_cart-navbar-price detail_cart-navbar-price-item">5000$</span>
                     <span class="detail_cart-navbar-handle detail_cart-navbar-handle-item">
@@ -50,10 +56,10 @@
                     <span class="detail_cart-navbar-cost detail_cart-navbar-cost-item">{{this.priceBook}}</span>
                     <span class="detail_cart-navbar-qty detail_cart-navbar-qty-item">
 
-                        <a href=""  class="detail_cart-navbar-qty-item-cart">-</a>
+                        <a href=""  class="detail_cart-navbar-qty-item-cart btn-reduce_item">-</a>
                         <span class="detail_cart-navbar-qty-item-cart detail_cart-navbar-qty-item-cart-qty">{{this.qty}}</span>
                         <a href=""  class="detail_cart-navbar-qty-item-cart detail_cart-navbar-qty-item-cart-add">+</a>
-                   
+                        <span id="get_id-in-cart" style="display: none;">{{this._id}}</span>
 
                     </span>
                     <span class="detail_cart-navbar-price detail_cart-navbar-price-item">5000$</span>
@@ -97,7 +103,9 @@
 
 
 
+<script src="/socket.io/socket.io.js"></script>
 <script>
+    let socket = io();
     const priceToCart = document.querySelectorAll('.detail_cart-navbar-cost-item');
     const qtyToCart = document.querySelectorAll('.detail_cart-navbar-qty-item-cart-qty');
     const priceQtyCart = document.querySelectorAll('.detail_cart-navbar-price-item');
@@ -108,19 +116,64 @@
     const totalItemIsChecked = document.querySelector('.detail_cart-pay-right_totalPrice-cost');
     const btndeleteItemInCart = $('.detail_cart-pay-delete');
     const btnBuyItemInCart = $('.detail-product__right-buy-btn');   
-  
     const formCart = document.forms['form__cart'];
-    
     const checkboxAll = $('.checkBoxAll');
     const checkboxAllProduct = $('.checkBoxAllProduct');
     const checkboxItems = $('input[name="productId[]"]');
     const priceEachItem = $('.detail_cart-navbar-price-item');
-    
-    
+    let qtyItemChoose = document.querySelectorAll('.detail_cart-navbar-qty-item-cart-qty');
+    const btnAddItem = document.querySelectorAll('.detail_cart-navbar-qty-item-cart-add');
+    const btnReduceItem = document.querySelectorAll('.btn-reduce_item');
+   
+    const getIdInCart = document.querySelectorAll('#get_id-in-cart');
+    let containCart = document.querySelector('.get_id_contain-cart');
+    containCart = containCart.textContent ; 
+    let pos= 0;
+    let lose = 0;
+    //add item to cart
+    for(let i =0 ; i< btnAddItem.length ; i++){
+        btnAddItem[i].addEventListener('click', function(e) {
+            e.preventDefault();
+            let qtyChange = parseInt(qtyItemChoose[i].textContent);
+            let idItemChange = getIdInCart[i].textContent;
+            pos = i;
+            socket.emit('changeQtyInCart', {qtyChange, idItemChange, containCart}); 
+
+        })
+
+    }
+    // navigate item from cart
+    for(let i =0 ; i< btnAddItem.length ; i++){
+        btnReduceItem[i].addEventListener('click', function(e) {
+            e.preventDefault();
+            let qtyChange = parseInt(qtyItemChoose[i].textContent);
+            let idItemChange = getIdInCart[i].textContent;
+            lose = i;
+            socket.emit('changeQtyInCartReduce', {qtyChange, idItemChange, containCart}); 
+            
+
+
+        })
+
+    }
+    // handle add item to cart by socketIO 
+    socket.on('changeQtyInCart', function(val){
+        priceQtyCart[pos].textContent = priceToCart[pos].textContent*val;
+        priceToCart[pos].textContent = priceToCart[pos].textContent ;
+        qtyItemChoose[pos].innerHTML = val;
+    })
+    //handle lose item from cart by socketIO
+    socket.on('changeQtyInCartReduce', function(val){
+        priceQtyCart[lose].textContent = priceToCart[lose].textContent*val;
+        priceToCart[lose].textContent = priceToCart[lose].textContent ;
+        qtyItemChoose[lose].innerHTML = val;
+    })
+
     for(let i =0 ; i < priceToCart.length ;i++){
         priceQtyCart[i].textContent = priceToCart[i].textContent*qtyToCart[i].textContent;
         priceToCart[i].textContent = priceToCart[i].textContent ;
     }
+    
 
     checkboxAll.change(function(){
        let isCheckboxAll = $(this).prop('checked');
