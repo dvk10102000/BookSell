@@ -95,6 +95,7 @@ io.on('connection', (socket) => {
                     item.qty--;
                     val.qtyChange--;
                     newCart.cartContainer.price -= item.priceBook;
+                    console.log('hello khang');
                     
                  //    console.log(item.qty);
                  //    console.log(val.qtyChange);
