@@ -482,7 +482,7 @@
     let priceBill = document.querySelectorAll('.container__buyItemChoosed-listItems-totalPriceDetail-qty');
     let qtyITem = document.querySelectorAll('.container__buyItemChoosed-listItems-qtyDetail');
     let priceITem = document.querySelectorAll('.container__buyItemChoosed-listItems-untilPriceDetail-qty');
-    console.log(priceITem);
+    
     
     for (let i = 0 ; i < priceBill.length ; i++){
         priceBill[i].textContent = qtyITem[i].textContent * priceITem[i].textContent;
