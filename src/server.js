@@ -7,7 +7,7 @@ const users = require('./app/model/user');
 const books = require('./app/model/book');
 const cart = require('./app/model/cart');
 
-const port = 5000;
+const port = 3000;
 
 io.on('connection', (socket) => {
 

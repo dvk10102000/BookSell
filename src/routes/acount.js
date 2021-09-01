@@ -9,6 +9,7 @@ router.get('/logOut', acountController.logOut);
 router.get('/register', acountController.register);
 router.get('/login', acountController.login);
 router.put('/update/:id', acountController.update);
+router.get('/:invoice', acountController.show);
 router.get('/', acountController.show);
 
 module.exports = router;

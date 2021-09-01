@@ -20,6 +20,10 @@ class AcountController{
         let billNotConfirm = await Bill.find({email : req.session.email, status:false, delivery: false, received: true});
         let billDelivering = await Bill.find({email : req.session.email,status:false, delivery: true});
         let deliveried = await Bill.find({email : req.session.email, status:true});
+
+        console.log(req.params.invoice);
+
+        
         // console.log(bills);
         res.render('acount', {
             user:mongooseToObject(user),
@@ -27,6 +31,7 @@ class AcountController{
             billNotConfirm : mutipleMongooseToObject(billNotConfirm),
             billDelivering : mutipleMongooseToObject(billDelivering),
             deliveried : mutipleMongooseToObject(deliveried),
+            navigateBill: req.params.invoice,
         })
         
       
@@ -147,7 +152,7 @@ class AcountController{
         User.updateOne({email : req.session.email}, user)
             .then( ()=> {
                 // console.log(user);
-                res.redirect("back");
+                res.redirect("/acount");
             })
        
     }
