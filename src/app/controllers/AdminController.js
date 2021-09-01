@@ -113,9 +113,7 @@ class HomeController {
                 book.name = req.body.name;
                 book.priceCurrent = req.body.priceCurrent;
                 book.quantity = req.body.quantity;  
-                
 
-                
                 try{
                     if(req.file.filename){
                         book.image = req.file.filename;
@@ -124,6 +122,7 @@ class HomeController {
                 }catch(e){
                     console.log(e.message);
                 }
+                
                 Books.updateOne({_id : req.params.id},book)
                      .then(() => {
                         res.redirect('/admin/managerItems');
