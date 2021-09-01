@@ -13,7 +13,9 @@
                             <input type="text" class="auth-form__input" placeholder="Email của bạn" name="email">
                         </div>
                         <div class="auth-form__group">
-                            <input type="password" class="auth-form__input" placeholder="Nhập password của bạn" name="password">
+                            <input type="password" class="auth-form__input" id="yourPassword" placeholder="Nhập password của bạn" name="password">
+                            <i class="far fa-eye open_eye"></i>
+                            <i class="far fa-eye-slash close_eye"></i>
                         </div>
                         
                     </div>
@@ -50,3 +52,20 @@
             </div>  
     </div>
 </div>
+<script>
+    const openEye = document.querySelector('.open_eye');
+    const closeEye = document.querySelector('.close_eye');
+    closeEye.addEventListener('click',function(e) {
+        openEye.style.display = 'block';
+        closeEye.style.display = 'none';
+        document.querySelector('#yourPassword').type="text";
+
+    })
+
+    openEye.addEventListener('click',function(e) {
+        openEye.style.display = 'none';
+        closeEye.style.display = 'block';
+        document.querySelector('#yourPassword').type="password";
+
+    })
+</script>

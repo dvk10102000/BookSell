@@ -210,6 +210,45 @@ class HomeController {
                 })
             })
     }
+
+    searchToList(req,res, next) {
+        let perPage = 10;
+        let page = req.query.page    || 1;
+        let Name;
+        if(req.body.nameBook == '' || req.body.nameBook == null || req.body.nameBook == 'undified'){
+            
+            Name = req.session.nameBookLocal;
+        } else{
+            req.session.nameBookLocal = req.body.nameBook;
+            Name = req.body.nameBook;
+        }
+
+
+          Books.find({slug: req.params.slug})
+             .skip((perPage * page) - perPage)
+             .limit(perPage)
+             .exec(function(err, books) {
+                Books.find({slug: req.params.slug}).count().exec(function(err, count) {
+                    if (err) return next(err);
+                    if(req.session.Authorization != 'admin'){
+                        res.render('home', {
+                            book: mutipleMongooseToObject(books),
+                            current: page,
+                            pages: Math.ceil(count / perPage)
+                        })
+                    }
+                    else{
+                        bills.find({})
+                             .then(bill => {
+                                 res.render('admin', {
+                                     bill: mutipleMongooseToObject(bill)
+                                 })
+                             })
+                        
+                    }
+                })
+            }) 
+    }
 }   
         
 module.exports = new HomeController;
