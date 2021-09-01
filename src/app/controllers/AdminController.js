@@ -96,7 +96,7 @@ class HomeController {
     update(req, res, next){
         Books.findOne({_id: req.params.id})
              .then(book => {
-                 res.render('updateItems',mongooseToObject(book))
+                 res.render('updateItems',mongooseToObject(book));
              })
     }
     async updateItem(req, res, next){
