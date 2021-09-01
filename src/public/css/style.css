@@ -238,6 +238,9 @@ tbody, td, tfoot, th, thead, tr {
     margin-left: auto;
     margin-right: auto;
     line-height: 76px;
+    margin-top: 15px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0,0.3);
+
 }
 .detail__bill-bottom-value-image{
     border-right: 1px solid #cccccc52;
