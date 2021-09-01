@@ -479,8 +479,14 @@
     const handleBtnSeeInvoice = document.querySelectorAll('.status_bill span'); 
     const deliveried__invoiced = document.querySelector('.deliveried__invoiced');
     const checkNavigateBill = document.querySelector('#chek_navigate-bill');
-    console.log(checkNavigateBill);
-    //console.log(btnDeliveried)
+    let priceBill = document.querySelectorAll('.container__buyItemChoosed-listItems-totalPriceDetail-qty');
+    let qtyITem = document.querySelectorAll('.container__buyItemChoosed-listItems-qtyDetail');
+    let priceITem = document.querySelectorAll('.container__buyItemChoosed-listItems-untilPriceDetail-qty');
+    console.log(priceITem);
+    
+    for (let i = 0 ; i < priceBill.length ; i++){
+        priceBill[i].textContent = qtyITem[i].textContent * priceITem[i].textContent;
+    }
 
 
     if(checkNavigateBill.textContent){
