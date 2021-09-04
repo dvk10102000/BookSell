@@ -392,7 +392,7 @@ class cartController{
 
         Bill.updateOne({_id: req.params.id},bill)
             .then(function(){
-              res.redirect('/acount');
+              res.redirect('/acount/invoice');
             })
         //  await Bill.updateMany({status: false})
         //             .then( () => {

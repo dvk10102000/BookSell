@@ -163,8 +163,14 @@
 
             <div class="total__bill_bought" >
                 {{#each bills}} 
+                
                 <div class="container__buyItemChoosed-listItems">
-                    <div class="container__buyItemChoosed-listItems-narbar">
+                    {{#if this.received}}
+                        <h3 class="status__invoice" style="color:#006cff;">Đơn đã nhận</h3>
+                    {{else}}
+                        <h3 class="status__invoice">Đơn Hủy</h3>
+                    {{/if}}
+                    <div class="container__buyItemChoosed-listItems-narbar-bill">
                         <span class="container__buyItemChoosed-listItems-name">Sản phẩm</span>
                         <span class="container__buyItemChoosed-listItems-untilPrice">Đơn giá</span>
                         <span class="container__buyItemChoosed-listItems-qty">Số lượng</span>
@@ -235,7 +241,7 @@
             <div class="wait__to_confirm_invoice" style="display: none;" >
                 {{#each billNotConfirm}} 
                 <div class="container__buyItemChoosed-listItems">
-                    <div class="container__buyItemChoosed-listItems-narbar">
+                    <div class="container__buyItemChoosed-listItems-narbar-bill">
                         <span class="container__buyItemChoosed-listItems-name">Sản phẩm</span>
                         <span class="container__buyItemChoosed-listItems-untilPrice">Đơn giá</span>
                         <span class="container__buyItemChoosed-listItems-qty">Số lượng</span>
@@ -309,7 +315,7 @@
             <div class="invoice_Is_Delivering" style="display: none;" >
                 {{#each billDelivering}} 
                 <div class="container__buyItemChoosed-listItems">
-                    <div class="container__buyItemChoosed-listItems-narbar">
+                    <div class="container__buyItemChoosed-listItems-narbar-bill">
                         <span class="container__buyItemChoosed-listItems-name">Sản phẩm</span>
                         <span class="container__buyItemChoosed-listItems-untilPrice">Đơn giá</span>
                         <span class="container__buyItemChoosed-listItems-qty">Số lượng</span>
@@ -381,7 +387,7 @@
             <div class="deliveried__invoiced" style="display: none;" >
                 {{#each deliveried}} 
                 <div class="container__buyItemChoosed-listItems">
-                    <div class="container__buyItemChoosed-listItems-narbar">
+                    <div class="container__buyItemChoosed-listItems-narbar-bill">
                         <span class="container__buyItemChoosed-listItems-name">Sản phẩm</span>
                         <span class="container__buyItemChoosed-listItems-untilPrice">Đơn giá</span>
                         <span class="container__buyItemChoosed-listItems-qty">Số lượng</span>

@@ -36,7 +36,12 @@ const user = new Schema({
             type: Number,
             default:0,
         }
-    }
+    },
+    inform: [{
+        
+        content: String,
+        statusRead: false,
+    }]
 })
 
 module.exports = mongoose.model('User',user,'User');

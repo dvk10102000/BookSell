@@ -7,7 +7,7 @@ const users = require('./app/model/user');
 const books = require('./app/model/book');
 const cart = require('./app/model/cart');
 
-const port = 3000;
+
 
 io.on('connection', (socket) => {
 
@@ -110,7 +110,10 @@ io.on('connection', (socket) => {
         }
      })
 });
-
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 server.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
   });

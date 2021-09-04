@@ -21,7 +21,7 @@ class AcountController{
         let billDelivering = await Bill.find({email : req.session.email,status:false, delivery: true});
         let deliveried = await Bill.find({email : req.session.email, status:true});
 
-        console.log(req.params.invoice);
+        // console.log(req.params.invoice);
 
         
         // console.log(bills);
