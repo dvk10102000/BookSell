@@ -32,8 +32,9 @@
     </div>
     <div class="detail__bill menu__admin-right">
      <h2 id="update-title" >THÊM SẢN PHẨM MỚI</h2>
-     <form  id="form__update-item" method="POST" action="/admin/add" enctype="multipart/form-data">
+     <form  id="form__update-item" method="POST" action="/admin/add" enctype="multipart/form-data" >
         <div class="mb-4">
+            
             <label class="form__update-item-label" >Tên sản phẩm</label><br>
             <input type="text" name="name"  class="form__update-item not-login-input form__update-item-name">
         </div>
@@ -68,7 +69,29 @@
             <label class="form__update-item-label" >Số lượng sản phẩm</label><br>
             <input type="text" name="quantity"  class="not-login-input form__update-item-qty">
         </div>
-       
+        <div class="mb-4">
+            <label class="form__update-item-label" >Chọn loại sản phẩm</label><br>
+
+            <select class="form-select" aria-label="Default select example" name="kindBook">
+                <option selected>Lựa chọn loại sách</option>
+                
+                <option value="program">Sách lập trình</option>
+                <option value="VH">Sách văn học</option>
+                <option value="toan">Sách toán học</option>
+                <option value="BC">Báo chí</option>
+                <option value="nn">Sách nước ngoài</option>
+                <option value="truyen">Truyện ma</option>
+                <option value="ct">Truyện cổ tích</option>
+                <option value="nt">Truyện ngôn tình</option>
+                <option value="hh">Truyện hài hước</option>
+                <option value="na">Sách nấu ăn</option>
+                <option value="kd">Sách kinh doanh</option>
+                <option value="kt">Sách kinh tế </option>
+                <option value="ls">Sách sử học</option>
+                <option value="vd">Sách gì cũng được</option>
+                
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary form__update-item-btn">Thêm</button>
     </form>
     </div> 

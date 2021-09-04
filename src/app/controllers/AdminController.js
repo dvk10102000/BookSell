@@ -101,7 +101,7 @@ class HomeController {
     }
     async updateItem(req, res, next){
        
-   
+        
         let book = await Books.findOne({_id: req.params.id});
                       
         await upload(req, res, function (err) {
@@ -134,6 +134,7 @@ class HomeController {
         res.render('addItems');
     }
     async add(req, res, next){
+  
        await upload(req, res, function (err) {
             if (err instanceof multer.MulterError) {
               console.log("A Multer error occurred when uploading."); 
@@ -149,6 +150,7 @@ class HomeController {
                     priceOld : req.body.priceOld,
                     priceCurrent : req.body.priceCurrent,
                     quantity : req.body.quantity,
+                    slug: req.body.kindBook,
                 });
                 book.save() 
                     .then( () => {
