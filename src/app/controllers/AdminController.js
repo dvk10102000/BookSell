@@ -9,18 +9,19 @@ const { mongooseToObject } = require('../../util/mongoose');
 const multer  = require('multer');
 
 let storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'src/public/img');
-    },
     filename: function (req, file, cb) {
+      console.log(file.originalname);
       cb(null, Date.now()  + "-" + file.originalname);
+    },
+    destination: function (req, file, cb) {
+        cb(null, 'src/public/img');
     }
 });  
 
 let upload = multer({ 
     storage: storage,
     fileFilter: function (req, file, cb) {
-        console.log(file);
+        // console.log(file);
         if(file.mimetype=="image/bmp" || file.mimetype=="image/png" || file.mimetype== "image/jpg" || file.mimetype== "image/jpeg"){
             cb(null, true);
         }else{
@@ -28,6 +29,11 @@ let upload = multer({
         }
     }
 }).single("image");
+
+
+// let upload = multer({ 
+//     storage: storage
+// }).single("image");
 
 
 class HomeController {
@@ -90,12 +96,12 @@ class HomeController {
     update(req, res, next){
         Books.findOne({_id: req.params.id})
              .then(book => {
-                 res.render('updateItems',mongooseToObject(book))
+                 res.render('updateItems',mongooseToObject(book));
              })
     }
     async updateItem(req, res, next){
        
-       
+   
         let book = await Books.findOne({_id: req.params.id});
                       
         await upload(req, res, function (err) {
@@ -106,6 +112,7 @@ class HomeController {
             }else{
                 book.name = req.body.name;
                 book.priceCurrent = req.body.priceCurrent;
+<<<<<<< HEAD
                 book.quantity = req.body.quantity; 
                 try{
                     if(req.file.filename){
@@ -116,6 +123,19 @@ class HomeController {
                     console.log(e.message);
                 }
              
+=======
+                book.quantity = req.body.quantity;  
+
+                try{
+                    if(req.file.filename){
+                        book.image = req.file.filename;
+                        
+                    }
+                }catch(e){
+                    console.log(e.message);
+                }
+                
+>>>>>>> b4d806d56a707811b6881310a607dd407243220c
                 Books.updateOne({_id : req.params.id},book)
                      .then(() => {
                         res.redirect('/admin/managerItems');
@@ -125,28 +145,6 @@ class HomeController {
         })             
     }
     async AddItems(req, res, next) {
-        // await upload(req, res, function (err) {
-        //     if (err instanceof multer.MulterError) {
-        //       console.log("A Multer error occurred when uploading."); 
-        //     } else if (err) {
-        //       console.log("An unknown error occurred when uploading." + err);
-        //     }else{
-        //         let book = new Book({
-        //             name : req.body.name,
-        //             description : req.body.description,
-        //             nameAuthor : req.body.nameAuthor,
-        //             publicLocation : req.body.publicLocation,
-        //             image : req.file.filename,
-        //             priceOld : req.body.priceOld,
-        //             priceCurrent : req.body.priceCurrent,
-        //             quantity : req.body.quantity,
-        //         });
-        //         book.save() 
-        //             .then( () => {
-        //                 res.redirect('/admin/managerItems');
-        //             })
-        //     }
-        // })  
         res.render('addItems');
     }
     async add(req, res, next){

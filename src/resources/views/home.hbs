@@ -10,21 +10,56 @@
                         Danh Mục
                     </h3>
                     <ul class="category-list">
-                        <li class="caterory-item caterory-item--active">
+                        <li class="caterory-item caterory-item--active" value="program">
                             <a href="" class="category-item__link">Sách Lập Trình</a>
                         </li>
-                        <li class="caterory-item">
+                        <li class="caterory-item" value="VH">
                             <a href="" class="category-item__link">Sách Văn Học</a>
                         </li>
-                        <li class="caterory-item">
+                        <li class="caterory-item" value="toan">
                             <a href="" class="category-item__link">Sách Toán Học</a>
                         </li> 
-                        <li class="caterory-item">
-                            <a href="" class="category-item__link">Truyện</a>
-                        </li> 
-                        <li class="caterory-item">
+                        <li class="caterory-item" value="BC">
                             <a href="" class="category-item__link">Báo Chí</a>
                         </li> 
+                        <li class="caterory-item" value="nn">
+                            <a href="" class="category-item__link">Sách nước ngoài</a>
+                        </li>
+                        <li class="caterory-item" value="truyen">
+                            <a href="" class="category-item__link">Truyện ma</a>
+                        </li> 
+                        <li class="caterory-item" value="ct">
+                            <a href="" class="category-item__link">Truyện cổ tích</a>
+                        </li> 
+                        <li class="caterory-item" value="nt">
+                            <a href="" class="category-item__link">Truyện ngôn tình</a>
+                        </li> 
+                        <li class="caterory-item" value="hh">
+                            <a href="" class="category-item__link">Truyện hài hước</a>
+                        </li> 
+                         <li class="caterory-item" value="na">
+                            <a href="" class="category-item__link">Sách nấu ăn</a>
+                        </li> 
+                        <li class="caterory-item" value="kd">
+                            <a href="" class="category-item__link">Sách kinh doanh</a>
+                        </li> 
+                        <li class="caterory-item" value="kt">
+                            <a href="" class="category-item__link">Sách kinh tế</a>
+                        </li> 
+                        <li class="caterory-item" value="ls">
+                            <a href="" class="category-item__link">Sách sử học</a>
+                        </li> 
+                         <li class="caterory-item" value="vd">
+                            <a href="" class="category-item__link">Sách gì cũng được</a>
+                        </li> 
+
+
+
+
+
+
+
+
                         <li style="display: none;" class="caterory-item">
                             <a id="pageCurrent" href="" class="category-item__link">{{current}}</a>
                         </li>
@@ -92,7 +127,7 @@
                                <a href="/book/detailBook/{{this._id}}">
                                     <div class="home-product-item__img" style="background-image: url(/img/{{this.image}});"></div>
                                </a>
-                                {{!-- <span class="home-product-item__getImg" style="visibility:hidden" >{{this.image}}</span> --}}
+                               
                                 
                                 <h4 class="home-product-item__nameMain" style="margin:5px 0 0 10px;">{{this.name}}</h4>
                                 <h4 class="home-product-item__name">{{this.description}}</h4>
@@ -175,7 +210,10 @@
 </div>
 
 <script>
-    
+    //
+    const listMenu = document.querySelectorAll('.caterory-item');
+    const listBtnMenu = document.querySelectorAll('.category-item__link');
+ 
     let container_pagination = document.querySelector('.pagination');
     let pageCurrent = document.querySelector('#pageCurrent');
     let qtyPages = document.querySelector('#qtyPages');
@@ -184,10 +222,23 @@
     let indexPrevious = document.querySelector('#index_previous');
     
     
+    for(let i = 0; i < listMenu.length ; i++){
+        listMenu[i].addEventListener('click',function(e){
+            //e.preventDefault();
+            document.querySelector('.caterory-item.caterory-item--active').classList.remove('caterory-item--active');
+            listMenu[i].classList.add('caterory-item--active');
+            listBtnMenu[i].setAttribute('href', `/search/${listMenu[i].getAttribute('value')}`);
+           // console.log(listMenu[i].getAttribute('value'));
+        })
+    }
+
+
+
+
     pageCurrent = parseInt(pageCurrent.textContent);
     qtyPages = parseInt(qtyPages.textContent);
     let htmlPagination ; 
-    console.log(container_pagination);
+    //console.log(container_pagination);
     if(qtyPages > 0){
         htmlPagination = ''
         if(pageCurrent == 1){

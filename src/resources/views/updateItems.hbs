@@ -3,7 +3,7 @@
                 <h3 class="dashboard">
                     
                     <i class="category__heading-icon fas fa-home"></i>
-                    <a href="" class="">Dashboard</a>
+                    <a href="/" class="">Dashboard</a>
                     
                 </h3>
                 <nav class="category">
@@ -32,14 +32,14 @@
     </div>
     <div class="detail__bill menu__admin-right">
      <h2 id="update-title" >CẬP NHẬT THÔNG TIN SẢN PHẨM</h2>
-     <form  id="form__update-item" method="POST" action="/admin/update/{{this._id}}" enctype="multipart/form-data">
+     <form  id="form__update-item" method="POST" action="/admin/update/{{this._id}}" enctype="multipart/form-data" >
         <div class="mb-4">
             <label class="form__update-item-label" >Tên sản phẩm</label><br>
             <input type="text" name="name" value="{{this.name}}" class="form__update-itemnot-login-input form__update-item-name">
         </div>
          <div class="mb-4">
             <label class="form__update-item-label" >Ảnh sản phẩm</label><br>
-            <input type="file" name="image" value="{{this.image}}" class="not-login-input form__update-item-img">
+            <input type="file" name="image"  class="not-login-input form__update-item-img">
         </div>
          <div class="mb-4">
             <label class="form__update-item-label" >Giá sản phẩm</label><br>
@@ -55,5 +55,6 @@
     </div> 
 </div>
 <script>
-   
+    
+
 </script>

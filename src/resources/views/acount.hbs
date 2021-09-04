@@ -72,6 +72,9 @@
                     </div>
 
 
+                    {{!-- navigate bill manager --}}
+                    <span id="chek_navigate-bill" style="display: none;">{{navigateBill}}</span>
+
                     <div id="" class="acount__container-right-body-left-gender">
                         <span class="acount__container-right-body-left-gender-label">Giới Tính</span>
                         <input class="acount__choose" type="radio"  name="gender" value="male">
@@ -475,7 +478,28 @@
     const invoiceDelivering = document.querySelector('.invoice_Is_Delivering');
     const handleBtnSeeInvoice = document.querySelectorAll('.status_bill span'); 
     const deliveried__invoiced = document.querySelector('.deliveried__invoiced');
-    console.log(btnDeliveried)
+    const checkNavigateBill = document.querySelector('#chek_navigate-bill');
+    let priceBill = document.querySelectorAll('.container__buyItemChoosed-listItems-totalPriceDetail-qty');
+    let qtyITem = document.querySelectorAll('.container__buyItemChoosed-listItems-qtyDetail');
+    let priceITem = document.querySelectorAll('.container__buyItemChoosed-listItems-untilPriceDetail-qty');
+    
+    
+    for (let i = 0 ; i < priceBill.length ; i++){
+        priceBill[i].textContent = qtyITem[i].textContent * priceITem[i].textContent;
+    }
+
+
+    if(checkNavigateBill.textContent){
+        billOrderContent.style.display = 'block';
+        interfaceInformatinDetail.style.display = 'none';
+        interfaceAddress.style.display = 'none';
+    }else{
+        interfaceAddress.style.display = 'none';
+        interfaceInformatinDetail.style.display = 'block';
+        billOrderContent.style.display = 'none';
+    }
+
+
 
     for(let i = 0; i <handleBtnSeeInvoice.length ; i++){
         handleBtnSeeInvoice[i].addEventListener('click',function(e){
