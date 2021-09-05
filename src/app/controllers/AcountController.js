@@ -101,7 +101,7 @@ class AcountController{
         req.session.fullName = user.name;
         req.session.email = email;
         req.session.imageAvatar = user.avartar;
-        
+        req.session.address = user.address.ngo +' , ' + user.address.phuong +' , ' + user.address.huyen +' , ' + user.address.tinh ;
         req.session.Authorization = user.permission;
         
         user.status = 'active';
