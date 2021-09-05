@@ -67,9 +67,7 @@ class cartController{
       let book = await books.findOne({_id : req.params.id});
       
       user.cart.price += book.priceCurrent;
-      
-      
-      
+ 
       const isExisting = user.cart.items
       .findIndex(objInItems => new String(objInItems.productId).trim() === new String(req.params.id).trim());
       if (isExisting >= 0) {
