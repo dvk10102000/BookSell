@@ -101,7 +101,9 @@ class AcountController{
         req.session.fullName = user.name;
         req.session.email = email;
         req.session.imageAvatar = user.avartar;
-        req.session.address = user.address.ngo +' , ' + user.address.phuong +' , ' + user.address.huyen +' , ' + user.address.tinh ;
+        if(user.address.ngo || user.address.phuong || user.address.huyen || user.address.tinh){
+            req.session.address = user.address.ngo +' , ' + user.address.phuong +' , ' + user.address.huyen +' , ' + user.address.tinh ;
+        }
         req.session.Authorization = user.permission;
         
         user.status = 'active';
@@ -154,6 +156,7 @@ class AcountController{
         user.address.tinh = req.body.tinh;
         user.phoneNumber = req.body.phoneNumber;
         req.session.phoneNumber = req.body.phoneNumber;
+        
         req.session.address = req.body.ngo +' , ' + req.body.phuong +' , ' + req.body.huyen +' , ' + req.body.tinh ;
         
         User.updateOne({email : req.session.email}, user)
