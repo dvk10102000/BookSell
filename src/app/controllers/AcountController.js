@@ -103,6 +103,8 @@ class AcountController{
         req.session.imageAvatar = user.avartar;
         if(user.address.ngo || user.address.phuong || user.address.huyen || user.address.tinh){
             req.session.address = user.address.ngo +' , ' + user.address.phuong +' , ' + user.address.huyen +' , ' + user.address.tinh ;
+        }else{
+            req.session.address = '';
         }
         req.session.Authorization = user.permission;
         
