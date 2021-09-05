@@ -34,38 +34,6 @@ app.use(express.static(path.join(__dirname,'app')));
 
 
 
-
-// io.on('connection', (socket) => {
-
-//   // console.log('a user connected');
-
-//   socket.on('comment', async (msg) => {
-//      let user = await users.findOne({email: msg.email.toString()});
-//      let book = await books.findOne({_id: msg.idItem.toString()});
-     
-//      let now = new Date();
-//      book.comment.push({name : user.name, time: now.toDateString(), content : msg.content.toString(), avatar : user.avartar});
-//      books.updateOne({_id: msg.idItem.toString()}, book)
-//           .then(() => {
-
-//           })
-//           .catch(err => {
-//             console.log(err);
-//           })
-     
-//      io.emit('comment', msg.content);
-//   });
-
-//   socket.on('changeQtyInCart', (qty)=> {
-//     console.log(qty);
-//   })
-
-// });
-
-
-
-
-
 db.connect();
 
 app.engine('hbs', handlebars({
@@ -85,7 +53,8 @@ app.engine('hbs', handlebars({
 app.use(methodOverride('_method'));
 
 const store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/BookStore',
+  // uri: 'mongodb://localhost:27017/BookStore',
+  uri: 'mongodb+srv://dvkhang:dovankhang123@bookstore.es6un.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   collection: "mySessions",
 });
 
