@@ -129,7 +129,14 @@
 
                     <div class="acount__address-phone-change-nameAddress">
                         <span class="acount__address-phone-change-name-label">Địa chỉ</span>
-                        <input type="text"  value="{{user.address}}" name="address" class="acount__address-phone-change-name-content">
+                        <span class="acount__address-phone-change-name-content-label">Ngõ / Ngách / Xóm / Thôn  </span></br>
+                        <input type="text"  value="{{user.address.ngo}}" name="ngo" class="acount__address-phone-change-name-content"></br>
+                        <span class="acount__address-phone-change-name-content">Phường / Xã </span></br>
+                        <input type="text"  value="{{user.address.phuong}}" name="phuong" class="acount__address-phone-change-name-content"></br>
+                        <span class="acount__address-phone-change-name-content">Quận / Huyện</span></br>
+                        <input type="text"  value="{{user.address.huyen}}" name="huyen" class="acount__address-phone-change-name-content"></br>
+                        <span class="acount__address-phone-change-name-content">Tỉnh / Thành phố</span></br>
+                        <input type="text"  value="{{user.address.tinh}}" name="tinh" class="acount__address-phone-change-name-content">
                     </div>
 
                     <div class="acount__address-phone-change-phone">

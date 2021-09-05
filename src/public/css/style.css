@@ -399,3 +399,6 @@ tbody, td, tfoot, th, thead, tr {
     height: 30px;
     font-size: 1.6rem;
 }
+.dropdown-item:focus, .dropdown-item:hover {
+    width: 88%;
+}

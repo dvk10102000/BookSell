@@ -11,11 +11,13 @@
                         </h2>
                         <div class="container__buyItemChoosed-address-infor">
                             <span class="container__buyItemChoosed-address-namePhone"> 
-                                <span><b>Khang Đỗ Văn</b></span>
-                                <span><b>(+84) 394681208</b></span>
+                                <span><b class="privateInfor">{{fullName}}</b></span>
+                                <span><b class="privateInfor">(+84) {{phoneNumber}}</b></span>
                             </span>
                             <span class="container__buyItemChoosed-address-detail">
-                                nhà văn hóa 2, ngõ 80, đường xuân phương, Phường Minh Khai, Quận Bắc Từ Liêm, Hà Nội
+                                {{!-- nhà văn hóa 2, ngõ 80, đường xuân phương, Phường Minh Khai, Quận Bắc Từ Liêm, Hà Nội --}}
+                             <b>Địa chỉ :</b>   
+                             <b class="privateInfor">{{address}}</b>   
                             </span>
                         </div>    
                     </div>
@@ -210,7 +212,7 @@
              Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản Của <span>Fourteen Book Store</span>
          </span>
          <span class="container__buyItemChoosed-btn-order">
-             <button type="submit" class="btn btn--primary">Đặt hàng</button>
+             <button id="buyItemChoosed" type="submit" class="btn btn--primary">Đặt hàng</button>
          </span>
      </div>
 </form>
@@ -222,7 +224,10 @@
     const totalItemschoosedNotShip = document.querySelector('.container__buyItemChoosed-totalItemCose-cost2');
     const totalShipItemChoosed = document.querySelector('.container__buyItemChoosed-totalShip-cost2');
     const totalCostBuy = document.querySelector('.container__buyItemChoosed-totalPaying-cost2');
-    console.log(totalItemschoosedNotShip)
+    
+    let inforUser = document.querySelectorAll('.privateInfor');
+    const btnChoosedItemBuy = document.querySelector('#buyItemChoosed');
+    
     const costItemShip = document.querySelectorAll('.container__buyItemChoosed-listItems-reminder-priceFree-qty');
     const totalPriceItemAndShip = document.querySelectorAll('.price-until-qty');
     
@@ -233,6 +238,20 @@
        totalItemschoosedNotShip.textContent= parseInt(totalItemschoosedNotShip.textContent) + parseInt(totalItemchoosed[i].textContent);
    }
    
+    for(let i = 0; i < inforUser.length ; i++){
+        if(inforUser[i].textContent){
+
+        
+        }else{
+            btnChoosedItemBuy.addEventListener('click',function(e){
+               e.preventDefault();
+               alert('Vui lòng cập nhật thông tin cá nhân trước khi đặt hàng');
+            })
+            
+        }
+    }
+
+
    totalCostBuy.textContent =  parseInt(totalShipItemChoosed.textContent) + parseInt(totalItemschoosedNotShip.textContent);
 
 

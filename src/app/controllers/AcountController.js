@@ -103,6 +103,7 @@ class AcountController{
         req.session.imageAvatar = user.avartar;
         
         req.session.Authorization = user.permission;
+        
         user.status = 'active';
         User.updateOne({email},user)
             .then();
@@ -133,7 +134,7 @@ class AcountController{
     }
 
    async update(req, res,next){
-       
+    //    res.json(req.body);
        let user = await User.findOne({email : req.session.email});
         // console.log(req.body.avartar);
         if(req.body.avartar == ''){
@@ -147,8 +148,14 @@ class AcountController{
         user.name = req.body.name;
         user.gender = req.body.gender;
         user.birth = req.body.birth;
-        user.address = req.body.address;
+        user.address.ngo = req.body.ngo;
+        user.address.phuong = req.body.phuong;
+        user.address.huyen = req.body.huyen;
+        user.address.tinh = req.body.tinh;
         user.phoneNumber = req.body.phoneNumber;
+        req.session.phoneNumber = req.body.phoneNumber;
+        req.session.address = req.body.ngo +' , ' + req.body.phuong +' , ' + req.body.huyen +' , ' + req.body.tinh ;
+        
         User.updateOne({email : req.session.email}, user)
             .then( ()=> {
                 // console.log(user);

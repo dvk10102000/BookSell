@@ -282,7 +282,7 @@ class cartController{
           let bill = await  new Bill({
             email: user.email,
             name :user.name,
-            address : user.address,
+            address : res.locals.address,
             phoneNumber : user.phoneNumber,
             delivery : false,
             received: true,

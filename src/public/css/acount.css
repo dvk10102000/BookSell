@@ -280,10 +280,14 @@
     margin-right: 134px;
 
 }
-
+.acount__address-phone-change-name-content-label{
+    opacity: 0.6;
+    width: 400px;
+}
 .acount__address-phone-change-name-content{
     opacity: 0.6;
     width: 400px;
+    margin-left: 188px;
 }
 .acount__address-phone-change-phone{
     margin-bottom: 20px;
