@@ -89,7 +89,7 @@ class AcountController{
 
         if (user) {
             req.session.error = "User already exists";
-            return res.redirect("/acount/register");
+            return res.redirect("/acount/register"  );
         }
 
       
@@ -218,7 +218,11 @@ class AcountController{
                 } catch(e){
                     console.log(e.message);
                 }
-                req.session.address = req.body.ngo +' , ' + req.body.phuong +' , ' + req.body.huyen +' , ' + req.body.tinh ;
+                if(user.address.ngo || user.address.phuong || user.address.huyen || user.address.tinh){
+                    req.session.address = user.address.ngo +' , ' + user.address.phuong +' , ' + user.address.huyen +' , ' + user.address.tinh ;
+                }else{
+                    req.session.address = '';
+                }
         
                 User.updateOne({email : req.session.email}, user)
                     .then( ()=> {

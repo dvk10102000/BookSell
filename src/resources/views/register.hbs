@@ -31,7 +31,8 @@
                             <a href="" class="auth-form__text-link">Chính sách bảo mật</a>
                         </p>
                          <p class="auth-form__policy-text">
-                           <span>{{err}}</span>
+                             
+                           <span id="err_resgister-fail" style="display: none;">{{err}}</span>
                         </p>
                     </div>
 
@@ -60,4 +61,9 @@
   </div>
 
   </div>     
-    
+<script>
+    const catchErr = document.querySelector('#err_resgister-fail');
+    if(catchErr.textContent){
+        alert('Tài khoản đã tồn tại');
+    }
+</script>
