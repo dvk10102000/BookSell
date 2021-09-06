@@ -5,6 +5,33 @@ const { mutipleMongooseToObject } = require('../../util/mongoose');
 // const { Server } = require("socket.io");
 // const io = new Server(server);
 
+const multer  = require('multer');
+
+let storage = multer.diskStorage({
+    filename: function (req, file, cb) {
+      console.log(file.originalname);
+      cb(null, Date.now()  + "-" + file.originalname);
+    },
+    destination: function (req, file, cb) {
+        cb(null, 'src/public/img');
+    }
+});  
+
+let upload = multer({ 
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        // console.log(file);
+        if(file.mimetype=="image/bmp" || file.mimetype=="image/png" || file.mimetype== "image/jpg" || file.mimetype== "image/jpeg"){
+            cb(null, true);
+        }else{
+            return cb(new Error('Only image are allowed!'));
+        }
+    }
+}).single("avartar");
+
+
+
+
 class AcountController{
     async show(req, res,next){
         // User.findOne({email : req.session.email})
@@ -138,34 +165,69 @@ class AcountController{
     }
 
    async update(req, res,next){
-    //    res.json(req.body);
-       let user = await User.findOne({email : req.session.email});
+        // res.json(req.body);
+       //let user = await User.findOne({email : req.session.email});
         // console.log(req.body.avartar);
-        if(req.body.avartar == ''){
-            user.avartar = req.session.imageAvatar;
-        }
-        else{
-            user.avartar = req.body.avartar;
-            req.session.imageAvatar = req.body.avartar;
-        }
+        // if(req.body.avartar == ''){
+        //     user.avartar = req.session.imageAvatar;
+        // }
+        // else{
+        //     user.avartar = req.body.avartar;
+        //     req.session.imageAvatar = req.body.avartar;
+        // }
 
-        user.name = req.body.name;
-        user.gender = req.body.gender;
-        user.birth = req.body.birth;
-        user.address.ngo = req.body.ngo;
-        user.address.phuong = req.body.phuong;
-        user.address.huyen = req.body.huyen;
-        user.address.tinh = req.body.tinh;
-        user.phoneNumber = req.body.phoneNumber;
-        req.session.phoneNumber = req.body.phoneNumber;
+        // user.name = req.body.name;
+        // user.gender = req.body.gender;
+        // user.birth = req.body.birth;
+        // user.address.ngo = req.body.ngo;
+        // user.address.phuong = req.body.phuong;
+        // user.address.huyen = req.body.huyen;
+        // user.address.tinh = req.body.tinh;
+        // user.phoneNumber = req.body.phoneNumber;
+        // req.session.phoneNumber = req.body.phoneNumber;
         
-        req.session.address = req.body.ngo +' , ' + req.body.phuong +' , ' + req.body.huyen +' , ' + req.body.tinh ;
+        // req.session.address = req.body.ngo +' , ' + req.body.phuong +' , ' + req.body.huyen +' , ' + req.body.tinh ;
         
-        User.updateOne({email : req.session.email}, user)
-            .then( ()=> {
-                // console.log(user);
-                res.redirect("/acount");
-            })
+        // User.updateOne({email : req.session.email}, user)
+        //     .then( ()=> {
+        //         // console.log(user);
+        //         res.redirect("/acount");
+        //     })
+
+        let user = await User.findOne({email : req.session.email});
+        await upload(req, res, function (err) {
+            if (err instanceof multer.MulterError) {
+                console.log("A Multer error occurred when uploading."); 
+            } else if (err) {
+                console.log("An unknown error occurred when uploading." + err);
+            }else{
+                user.name = req.body.name;
+                user.gender = req.body.gender;
+                user.birth = req.body.birth;
+                user.address.ngo = req.body.ngo;
+                user.address.phuong = req.body.phuong;
+                user.address.huyen = req.body.huyen;
+                user.address.tinh = req.body.tinh;
+                user.phoneNumber = req.body.phoneNumber;
+                req.session.phoneNumber = req.body.phoneNumber;
+                try{
+                    if(req.file.filename){
+                        user.avartar = req.file.filename;
+                        req.session.imageAvatar = req.file.filename;
+                    }
+                } catch(e){
+                    console.log(e.message);
+                }
+                req.session.address = req.body.ngo +' , ' + req.body.phuong +' , ' + req.body.huyen +' , ' + req.body.tinh ;
+        
+                User.updateOne({email : req.session.email}, user)
+                    .then( ()=> {
+                        // console.log(user);
+                        res.redirect("/acount");
+                    })
+                
+            }
+        })     
        
     }
 
