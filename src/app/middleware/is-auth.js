@@ -7,8 +7,10 @@ module.exports = function (req, res, next) {
         res.locals.email = req.session.email;
         res.locals.phoneNumber = req.session.phoneNumber;
         res.locals.address = req.session.address;
+        res.locals.notifications = req.session.inform;
         // res.locals.fullName = "do van khang" ; 
     }
+    
     next();
 
 }

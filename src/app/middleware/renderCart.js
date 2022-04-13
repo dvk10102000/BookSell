@@ -31,7 +31,6 @@ module.exports =  function(req, res, next){
             .catch(err =>{})
 
     }
- 
     setTimeout(function (){
         next();
     },100);

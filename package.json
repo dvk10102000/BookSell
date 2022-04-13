@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dvk10102000/BookSell.git"
+    "url": "git+https://github.com/khangdzz/website-book-sell.git"
   },
   "keywords": [
     "nodejs"
@@ -17,9 +17,9 @@
   "author": "khangdv",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dvk10102000/BookSell/issues"
+    "url": "https://github.com/khangdzz/website-book-sell/issues"
   },
-  "homepage": "https://github.com/dvk10102000/BookSell#readme",
+  "homepage": "https://github.com/khangdzz/website-book-sell#readme",
   "dependencies": {
     "connect-mongodb-session": "^3.0.0",
     "cookie-parser": "^1.4.5",

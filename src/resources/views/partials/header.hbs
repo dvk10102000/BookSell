@@ -30,72 +30,57 @@
                             <a href="" class="header__navbar-item-link">
                                 <i class="header__navbar-icon fas fa-bell"></i>
                                 {{#if checkState}}
-                                <span class="qty__infor">10</span>
+                                <span class="qty__infor"></span>
                                 {{/if}}
                                 Thông Báo
                             </a>
-                             <div class="header__notify">
-                                <header class="header__notify-header">
-                                    <h3>Thông báo mới nhận</h3>
-                                </header>
-                                <ul class="header__notify-list">
-                                   <li class="header__notify-item header__notify-item-view">
-                                    <a href="" class="header__notify-link">
-                                        <img src="/img/anh2.jpg" alt="" class="header__notify-img">
-                                        <div class="header__notify-info">
-                                            <span class="header__notify-name">Mĩ phẩm chính hãng</span>
-                                            <span class="header__notify-description">Mô tả mĩ phẩm chính hãng</span>
+                              
+                            {{#if checkState}}
+                                <div class="header__notify">
+                                    <header class="header__notify-header">
+                                        <h3>Thông báo mới nhận</h3>
+                                    </header>
+                                    <ul class="header__notify-list">
+                                         {{#each notifications}}
+                                            <li class="header__notify-item header__notify-item-view">
+                                                <a href="/acount/invoice" class="header__notify-link">
+                                                    <img src="/img/anh2.jpg" alt="" class="header__notify-img">
+                                                    <div class="header__notify-info">
+                                                        {{#if this.statusRead}}
+                                                            <span class="header__notify-name-read">Thông báo đã đọc</span>
+                                                        {{else}}
+                                                            <span class="header__notify-name-unread">Thông báo chưa đọc</span>
+                                                        {{/if}}
+                                                        <span class="header__notify-description">{{this.content}}</span>
+                                                    </div>
+                                                </a>
+                                             </li>
+                                        {{/each}}
+                                    </ul>
+                                    <footer class="header__notify-footer">
+                                        <a href="" class="header__notify-footer-btn">Xem tất cả</a>
+                                    </footer>
+                                </div>
+                            {{else}}
+                                <div class="header__notify">
+                                    <header class="header__notify-header">
+                                        <h3>Thông báo mới nhận</h3>
+                                    </header>
+                                    <ul class="header__notify-list">
+                                        <li class="header__notify-item header__notify-item-view">
+                                        <a href="/acount/login" class="header__notify-link">
+                                            <div class="header__notify-info">
+                                               Vui lòng đang nhập để check thông báo mới nhất !!!!
+                                            </div>
 
-                                        </div>
-
-                                    </a>
-                                   </li>
-
-                                   <li class="header__notify-item">
-                                    <a href="" class="header__notify-link">
-                                        <img src="/img/anh2.jpg" alt="" class="header__notify-img">
-                                        <div class="header__notify-info">
-                                            <span class="header__notify-name">Mĩ phẩm chính hãng</span>
-                                            <span class="header__notify-description">Mô tả mĩ phẩm chính hãng</span>
-
-                                        </div>
-
-                                    </a>
-                                   </li>
-
-                                   <li class="header__notify-item">
-                                    <a href="" class="header__notify-link">
-                                        <img src="/img/anh2.jpg" alt="" class="header__notify-img">
-                                        <div class="header__notify-info">
-                                            <span class="header__notify-name">Mĩ phẩm chính hãng</span>
-                                            <span class="header__notify-description">Mô tả mĩ phẩm chính hãng</span>
-
-                                        </div>
-
-                                    </a>
-                                   </li>
-
-                                   <li class="header__notify-item">
-                                    <a href="" class="header__notify-link">
-                                        <img src="/img/anh2.jpg" alt="" class="header__notify-img">
-                                        <div class="header__notify-info">
-                                            <span class="header__notify-name">Mĩ phẩm chính hãng</span>
-                                            <span class="header__notify-description">Mô tả mĩ phẩm chính hãng</span>
-
-                                        </div>
-
-                                    </a>
-                                   </li>
-                                </ul>
-                                <footer class="header__notify-footer">
-                                    <a href="" class="header__notify-footer-btn">Xem tất cả</a>
-                                </footer>
-                             </div>   
-
-                             
-
-
-
+                                        </a>
+                                        </li>
+                                    </ul>
+                                    <footer class="header__notify-footer">
+                                        <a href="" class="header__notify-footer-btn">Xem tất cả</a>
+                                    </footer>
+                                </div>
+                            {{/if}}
                         </li>
                         <li class="header__navbar-item">
                             <a href="" class="header__navbar-item-link">
@@ -283,15 +268,17 @@
             const listName = document.querySelector('.list__name-use-search');
             const container_search = document.querySelector('.header__search-history-list');
             const input__search = document.querySelector('.header__search-input');
-            
-         
-
+            const quantityNotification = document.querySelector('.qty__infor');
+            const notificationUnread = document.getElementsByClassName('header__notify-name-unread');
+            quantityNotification.textContent = notificationUnread.length;
+            console.log(listName)
             let arrListName = listName.textContent.split(',');
             function searchFunction(){
                 let dem = 0; 
                 container_search.innerHTML = '';
                 
                 arrListName.map( (name) =>{
+                
                     if(name.includes(input__search.value) && input__search.value != ''){
                         container_search.innerHTML += `
                             <li class="header__search-history-item">

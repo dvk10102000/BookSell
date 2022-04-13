@@ -11,6 +11,7 @@ let storage = multer.diskStorage({
     filename: function (req, file, cb) {
       console.log(file.originalname);
       cb(null, Date.now()  + "-" + file.originalname);
+    //   cb(null,file.originalname);
     },
     destination: function (req, file, cb) {
         cb(null, 'src/public/img');
@@ -49,7 +50,6 @@ class AcountController{
         let deliveried = await Bill.find({email : req.session.email, status:true});
 
         // console.log(req.params.invoice);
-
         
         // console.log(bills);
         res.render('acount', {
@@ -81,8 +81,6 @@ class AcountController{
 
     async registerPost(req, res, next){
         
-      
-
         const { name, email, password } = req.body;
 
         let user = await User.findOne({ email });
@@ -128,6 +126,7 @@ class AcountController{
         req.session.fullName = user.name;
         req.session.email = email;
         req.session.imageAvatar = user.avartar;
+        req.session.inform = user.inform;
         if(user.address.ngo || user.address.phuong || user.address.huyen || user.address.tinh){
             req.session.address = user.address.ngo +' , ' + user.address.phuong +' , ' + user.address.huyen +' , ' + user.address.tinh ;
         }else{
@@ -157,10 +156,10 @@ class AcountController{
 
         User.updateOne({ email : req.session.email},user)
         .then();
-        req.session.destroy((err) => {
-            if (err) throw err;
-            res.redirect("/acount/login");
-          });
+            req.session.destroy((err) => {
+                if (err) throw err;
+                res.redirect("/acount/login");
+        });
         
     }
 
@@ -210,6 +209,8 @@ class AcountController{
                 user.address.tinh = req.body.tinh;
                 user.phoneNumber = req.body.phoneNumber;
                 req.session.phoneNumber = req.body.phoneNumber;
+                req.session.inform = req.body.inform;
+
                 try{
                     if(req.file.filename){
                         user.avartar = req.file.filename;

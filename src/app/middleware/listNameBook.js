@@ -1,6 +1,7 @@
 const books = require('../model/book');
 const { mutipleMongooseToObject } = require('../../util/mongoose');
 module.exports =  function (req, res, next) {
+    console.log('line 4')
     let listName  = [];
     let listBook = []
     books.find({})
@@ -15,7 +16,7 @@ module.exports =  function (req, res, next) {
             
         })
         .catch(err =>{})   
-    console.log(listName) 
+ 
     next();
 
 }

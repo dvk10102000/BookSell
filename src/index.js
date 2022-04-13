@@ -14,15 +14,6 @@ const listBook = require('./app/middleware/listNameBook');
 const sessionID = require('./app/middleware/sessionMiddleware');
 const renderCart = require('./app/middleware/renderCart');
 const visitor = require('./app/middleware/visitor');
-// const http = require('http');
-// const server = http.createServer(app);
-// const { Server } = require("socket.io");
-// const io = new Server(server);
-// const users = require('./app/model/user');
-// const books = require('./app/model/book');
-
-
-// const port = 3000;
 
 app.use(express.urlencoded({
   extended:true
@@ -77,19 +68,3 @@ app.use(visitor);
 app.set('view engine', 'hbs');
 
 app.set('views',path.join(__dirname,'resources/views'));
-
-
-
-
-route(app);
-
-
-module.exports = app;
-
-// server.listen(port, () => {
-//   console.log(`Example app listening at http://localhost:${port}`)
-// });
-
-
-
-

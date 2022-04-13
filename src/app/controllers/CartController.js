@@ -16,7 +16,7 @@ class cartController{
       let book = await books.findOne({_id : req.params.id});
       
       user.cart.price += book.priceCurrent;
-      
+      user.cart.status = "order_success";
       
       
       const isExisting = user.cart.items
@@ -24,8 +24,15 @@ class cartController{
       if (isExisting >= 0) {
         user.cart.items[isExisting].qty += 1;
       } else {
-        user.cart.items.push({ productId: req.params.id, imageBook: book.image,
-          nameBook: book.name, priceBook: book.priceCurrent, discriptionBook: book.description, qty: 1 });
+        user.cart.items.push(
+          { 
+            productId: req.params.id, 
+            imageBook: book.image,
+            nameBook: book.name,
+            priceBook: book.priceCurrent, 
+            discriptionBook: book.description, 
+            qty: 1 
+          });
         }
         
         users.updateOne({_id : user._id}, user)
@@ -278,6 +285,7 @@ class cartController{
      }
      async storeBill(req,res,next){
         if(req.session.isAuth){
+          
           let user =  await users.findOne({email : req.session.email});
           let bill = await  new Bill({
             email: user.email,
@@ -294,8 +302,11 @@ class cartController{
           let cartUpdate = user.cart;
           let saveIndex = [];
           let saveItemIsChoosed = [];
+
+          let listName = [];
           cartUpdate.items.map((item,index) => {
-              let isChecked =  productIdArr.includes(item.productId.toString());
+              listName.push(item?.nameBook); 
+              let isChecked = productIdArr.includes(item.productId.toString());
               if(isChecked){
                 saveIndex.push(index);
                 saveItemIsChoosed.push(item);
@@ -323,7 +334,14 @@ class cartController{
           bill.save();
 
           user.cart = cartUpdate;
-
+          if(bill.received === true ){
+            console.log('line 338');
+            user.inform.push({
+              content: `Đơn đặt hằng của bạn gồm ( ${listName.toString()} )đã đặt hàng thành công`,
+              statusRead:false
+            })
+          }
+          req.session.inform = user.inform;
           users.updateOne({email : user.email}, user)
                .then(function() {
                  res.redirect('/');

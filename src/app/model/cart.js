@@ -29,6 +29,6 @@ const cart = new Schema({
     }
 })
 
-module.exports = mongoose.model('SessionNotLogIn',cart,'SessionNotLogIn');
+module.exports = mongoose.model('CartNotLogin',cart,'CartNotLogin');
 
 

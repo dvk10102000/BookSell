@@ -303,13 +303,19 @@
     
 }
 
-.header__notify-name{
+.header__notify-name-unread{
     display:block;
     color: var(--black-color);
     font-size: 1.4rem;
     font-weight: 400;
 }
 
+.header__notify-name-read{
+    display:block;
+    color: var(--black-color);
+    font-size: 1.4rem;
+    font-weight: 400;
+}
 .header__notify-description{
     display: block;
     font-size: 1.2rem;

@@ -41,10 +41,10 @@ const user = new Schema({
         price: {
             type: Number,
             default:0,
-        }
+        },
+        status: String
     },
     inform: [{
-        
         content: String,
         statusRead: false,
     }]
