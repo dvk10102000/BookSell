@@ -270,19 +270,27 @@
             const input__search = document.querySelector('.header__search-input');
             const quantityNotification = document.querySelector('.qty__infor');
             const notificationUnread = document.getElementsByClassName('header__notify-name-unread');
-            quantityNotification.textContent = notificationUnread.length;
-            console.log(listName)
+            if(quantityNotification){
+                quantityNotification.textContent = notificationUnread?.length;
+            } else {
+                console.log("4567")
+            }
+            
+   
+
             let arrListName = listName.textContent.split(',');
+
             function searchFunction(){
                 let dem = 0; 
                 container_search.innerHTML = '';
                 
                 arrListName.map( (name) =>{
-                
-                    if(name.includes(input__search.value) && input__search.value != ''){
+                    const temp = name;
+                    name = name.toLowerCase();
+                    if(name.includes(input__search.value.toLowerCase()) && input__search.value != ''){
                         container_search.innerHTML += `
                             <li class="header__search-history-item">
-                                <a onmouseover="mouseOver(${dem})" class='search_book_home' href="/book/searchBook">${name}</a>
+                                <a onmouseover="mouseOver(${dem})" class='search_book_home' href="/book/searchBook">${temp}</a>
                             </li>
                         `;
                         dem++;

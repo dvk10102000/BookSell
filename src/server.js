@@ -9,8 +9,6 @@ const cart = require('./app/model/cart');
 
 
 
-
-
 io.on('connection', (socket) => {
 
     // console.log('a user connected');

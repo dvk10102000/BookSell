@@ -33,7 +33,7 @@ module.exports =  function(req, res, next){
     }
     setTimeout(function (){
         next();
-    },100);
+    },500);
 }
 
 
