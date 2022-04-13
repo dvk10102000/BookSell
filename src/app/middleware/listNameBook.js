@@ -14,7 +14,8 @@ module.exports =  function (req, res, next) {
             res.locals.names = listName;
             
         })
-        .catch(err =>{})    
+        .catch(err =>{})   
+    console.log(listName) 
     next();
 
 }

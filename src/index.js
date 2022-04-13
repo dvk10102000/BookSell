@@ -53,8 +53,8 @@ app.engine('hbs', handlebars({
 app.use(methodOverride('_method'));
 
 const store = new MongoDBStore({
-  // uri: 'mongodb://localhost:27017/BookStore',
-  uri: 'mongodb+srv://dvkhang:dovankhang123@bookstore.es6un.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  uri: 'mongodb://localhost:27017/BookStore',
+  // uri: 'mongodb+srv://dvkhang:dovankhang123@bookstore.es6un.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   collection: "mySessions",
 });
 
