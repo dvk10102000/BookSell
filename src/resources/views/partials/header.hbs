@@ -279,7 +279,6 @@
    
 
             let arrListName = listName.textContent.split(',');
-
             function searchFunction(){
                 let dem = 0; 
                 container_search.innerHTML = '';
@@ -290,7 +289,8 @@
                     if(name.includes(input__search.value.toLowerCase()) && input__search.value != ''){
                         container_search.innerHTML += `
                             <li class="header__search-history-item">
-                                <a onmouseover="mouseOver(${dem})" class='search_book_home' href="/book/searchBook">${temp}</a>
+                                <a onmouseover="mouseOver(${dem})" class='search_book_home' href="/book/searchBook"
+                                >${temp}</a>
                             </li>
                         `;
                         dem++;

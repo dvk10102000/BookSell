@@ -574,8 +574,9 @@
     
     $(document).ready(function() {
             $('input[type="file"]').change(function(e) {
-              let nameImageUpdate = e.target.files[0].name;
-              $('.imageChange').attr('src',`/img/${nameImageUpdate}`);
+                let file = e.target.files[0];
+                let urlFile = URL.createObjectURL(file)
+                $('.imageChange').attr('src',`${urlFile}`);
             });
     });
  
