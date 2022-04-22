@@ -154,7 +154,7 @@
                 <img src="/img/{{imageAvatar}}" alt="avatar" class="comment__detail-item-contain-img-user-typing">
                 <span class="comment__detail-item-contain-name-user-typing">{{fullName}}</span>
                 <textarea onfocus='myFunction()'  placeholder="Vui lòng nhập đánh giá của bạn để chúng tôi tiếp thu và cải thiện trong tương lai .... !!!" class="comment__text-typing-input" name="comment" rows="5" cols="160"></textarea>
-                <button type="submit"  class="submit_comment btn btn-primary">bình luận</button>
+                <button id="btn-comment" type="submit"  class="submit_comment btn btn-primary">bình luận</button>
             </form>
         {{/if}}
         {{#each this.comment}}
