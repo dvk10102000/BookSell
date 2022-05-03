@@ -66,7 +66,7 @@
         </div>
     </div> 
 </div>
-
+ <span id="check_success" style="display: none;">{{succsess}}</span>
 <div class="modal" tabindex="-1" id="delete-book">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -86,9 +86,9 @@
 </div>
 <form name="delete-form" method="POST" ></form>
 <script>
-     btnDeleteBook = document.querySelectorAll('#manager__items-delete');
-     modalDialogDelete = document.querySelector('.modal');
-
+    btnDeleteBook = document.querySelectorAll('#manager__items-delete');
+    modalDialogDelete = document.querySelector('.modal');
+    const check_success = document.querySelector("#check_success");
      for(let i= 0 ; i< btnDeleteBook.length; i++){
          btnDeleteBook[i].onclick = function(e) {
              modalDialogDelete.style.visibility ='visible';
@@ -109,5 +109,5 @@
         deleteForm.action = '/admin/distroy/' +BookID+ '?_method=DELETE'; 
         deleteForm.submit();
       
-   }
+    }
 </script>

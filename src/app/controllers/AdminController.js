@@ -89,15 +89,15 @@ class HomeController {
 
     distroy(req, res, next){
         Books.deleteOne({_id: req.params.id})
-             .then(() =>{
-                 res.redirect('back');
-             })
+            .then(() =>{
+                res.redirect('back');
+            })
     }
     update(req, res, next){
         Books.findOne({_id: req.params.id})
-             .then(book => {
-                 res.render('updateItems',mongooseToObject(book));
-             })
+            .then(book => {
+                res.render('updateItems',mongooseToObject(book));
+            })
     }
     async updateItem(req, res, next){
        
@@ -131,15 +131,17 @@ class HomeController {
         })             
     }
     async AddItems(req, res, next) {
-        res.render('addItems');
+        res.render('addItems', );
     }
     async add(req, res, next){
-  
-       await upload(req, res, function (err) {
+        upload(req, res, function (err) {
+            console.log(err)
             if (err instanceof multer.MulterError) {
-              console.log("A Multer error occurred when uploading."); 
+                console.log("A Multer error occurred when uploading."); 
             } else if (err) {
-              console.log("An unknown error occurred when uploading." + err);
+                console.log("An unknown error occurred when uploading." + err);
+                // res.render('addItems',{err: err});
+                res.status(404).send('Thêm sản phẩm thất bại, vui lòng chọn đúng định dạng ảnh : JPG, PNG, JPEG');
             }else{
                 let book = new Books({
                     name : req.body.name,
@@ -154,7 +156,8 @@ class HomeController {
                 });
                 book.save() 
                     .then( () => {
-                        res.redirect('/admin/managerItems');
+                        // res.redirect('/admin/managerItems', );
+                        res.render('addItems',{succsess: "success"});
                     })
             }
         })  

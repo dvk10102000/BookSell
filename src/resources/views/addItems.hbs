@@ -32,6 +32,8 @@
     </div>
     <div class="detail__bill menu__admin-right">
      <h2 id="update-title" >THÊM SẢN PHẨM MỚI</h2>
+     <span id="check_bug" style="display: none;">{{err}}</span>
+     <span id="check_success" style="display: none;">{{succsess}}</span>
      <form  id="form__update-item" method="POST" action="/admin/add" enctype="multipart/form-data" >
         <div class="mb-4">
             
@@ -97,5 +99,17 @@
     </div> 
 </div>
 <script>
-   
+    const check_bug = document.querySelector("#check_bug");
+    const check_success = document.querySelector("#check_success");
+    if(check_bug.textContent){
+        alert("Thêm sản phẩm thất bại")
+        check_bug.remove()
+    }
+
+     if(check_success.textContent){
+        alert("Thêm sản phẩm thành công")
+        check_success.remove()
+        window.location.href = '/admin/managerItems'
+        
+    }
 </script>
